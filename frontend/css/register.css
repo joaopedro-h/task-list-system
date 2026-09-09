@@ -82,3 +82,26 @@ button:hover {
 .login-link a {
     text-decoration: none;
 }
+
+.message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000;
+    display: none;
+}
+
+.message.success {
+    border: 2px solid rgb(96, 247, 96);
+}
+
+.message.error {
+    border: 2px solid red;
+}

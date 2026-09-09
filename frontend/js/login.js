@@ -28,6 +28,30 @@ async function login(event) {
 
     const data = await response.json();
 
-    console.log(data);
+    const message = document.getElementById('message');
+    const messageTitle = document.getElementById('messageTitle');
+    const messageText = document.getElementById('messageText');
+
+    if (response.ok) {
+
+        message.className = "message success";
+        messageTitle.textContent = "Sucesso!";
+        messageText.textContent = "Login realizado com sucesso!";
+
+    }else {
+
+        message.className = "message error";
+        messageTitle.textContent = "Erro!"
+        messageText.textContent = data.error;
+
+    }
+
+    message.style.display = "block";
+
+    const messageButton = document.getElementById("messageButton");
+
+    messageButton.addEventListener("click", () => {
+        message.style.display = "none";
+    });
 
 }
