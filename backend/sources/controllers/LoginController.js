@@ -12,7 +12,7 @@ class LoginController {
                 email,
                 password
             })          
-
+            
             return res.status(200).json(user); // Retorna os dados do usuário após o login ser realizado com sucesso (ID e email).
 
         } catch (error) {

@@ -28,6 +28,8 @@ async function login(event) {
 
     const data = await response.json();
 
+    localStorage.setItem("token", data.token);
+
     const message = document.getElementById('message');
     const messageTitle = document.getElementById('messageTitle');
     const messageText = document.getElementById('messageText');

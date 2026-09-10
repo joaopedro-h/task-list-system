@@ -1,6 +1,8 @@
+import jwt from "jsonwebtoken";
 import * as Yup from "yup";
 import connection from "../database/connection";
 import decryptPasswrod from "../utils/decryptPassword";
+import authConfig from "../config/auth";
 
 class LoginUserService {
 
@@ -34,7 +36,10 @@ class LoginUserService {
 
         return { // Retorna os dados do usuário após o login ser realizado com sucesso.
             id: user.id,
-            email: user.email
+            email: user.email,
+            token: jwt.sign({id: user.id}, authConfig.secret, {
+                expiresIn: authConfig.expiresIn
+            }),
         }
     }
 
