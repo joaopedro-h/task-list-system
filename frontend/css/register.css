@@ -6,26 +6,40 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+
+    background: linear-gradient(
+        135deg,
+        #0a1b1e,
+        #344856
+    );
+
     min-height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+/*MENU DE CADASTRO*/
 .register-menu {
     width: 100%;
     max-width: 400px;
     padding: 20px;
 }
 
+/*CARD*/
 .register-card {
-    background-color: white;
+    background-color: #ffffff;
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(85, 163, 158, 0.25);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
+
+/*HEADER*/
 .register-header {
     text-align: center;
     margin-bottom: 30px;
@@ -33,13 +47,17 @@ body {
 
 .register-header h1 {
     margin-bottom: 10px;
+    color: #0a1b1e;
+    font-size: 28px;
 }
 
 .register-header p {
-    color: #666;
+    color: #344856;
     font-size: 14px;
 }
 
+
+/*FORMULÁRIO*/
 .form-group {
     display: flex;
     flex-direction: column;
@@ -48,60 +66,120 @@ body {
 
 .form-group label {
     margin-bottom: 8px;
+    color: #0a1b1e;
     font-weight: bold;
 }
 
 .form-group input {
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    border: 1px solid #c4ced1;
+    border-radius: 8px;
     font-size: 14px;
+    color: #0a1b1e;
+    outline: none;
+    transition: 0.2s ease;
 }
 
+.form-group input:focus {
+    border-color: #4d839d;
+
+    box-shadow:
+        0 0 0 3px rgba(77, 131, 157, 0.15);
+}
+
+.form-group input::placeholder {
+    color: #8b999c;
+}
+
+
+/*BOTÃO*/
 button {
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 6px;
-    background-color: #333;
-    color: white;
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #4d839d,
+        #55a39e
+    );
+
+    color: #ffffff;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow:
+        0 5px 15px rgba(77, 131, 157, 0.25);
 }
 
 button:hover {
-    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 20px rgba(77, 131, 157, 0.35);
 }
 
+button:active {
+    transform: translateY(0);
+}
+
+
+/*LINK PRA LOGIN*/
 .login-link {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
+    color: #344856;
 }
 
 .login-link a {
+    color: #4d839d;
     text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s ease;
 }
 
-.message {
+.login-link a:hover {
+    color: #55a39e;
+}
+
+
+/*OVERLAY*/
+.overlay {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 27, 30, 0.45);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+
+/*MENSAGEM PARA O USUÁRIO*/
+.message {
     width: 300px;
     padding: 30px;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     text-align: center;
-    z-index: 1000;
-    display: none;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.3);
+
+    z-index: 1001;
 }
 
+/*MENSAGEM DE SUCESSO*/
 .message.success {
-    border: 2px solid rgb(96, 247, 96);
+    border: 2px solid #55a39e;
 }
 
+/*MENSAGEM DE ERRO*/
 .message.error {
-    border: 2px solid red;
+    border: 2px solid #4d839d;
 }

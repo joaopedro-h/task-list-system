@@ -28,14 +28,14 @@ async function login(event) {
 
     const data = await response.json();
 
-    localStorage.setItem("token", data.token);
-
     const message = document.getElementById('message');
     const messageTitle = document.getElementById('messageTitle');
     const messageText = document.getElementById('messageText');
 
     if (response.ok) {
 
+        localStorage.setItem("token", data.token);
+        
         message.className = "message success";
         messageTitle.textContent = "Sucesso!";
         messageText.textContent = "Login realizado com sucesso!";
@@ -47,13 +47,15 @@ async function login(event) {
         messageText.textContent = data.error;
 
     }
+    
+    const overlay = document.getElementById("overlay");
 
-    message.style.display = "block";
+    overlay.style.display = "flex";
 
     const messageButton = document.getElementById("messageButton");
 
     messageButton.addEventListener("click", () => {
-        message.style.display = "none";
+        overlay.style.display = "none";
     });
 
 }

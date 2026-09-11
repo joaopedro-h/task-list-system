@@ -52,12 +52,14 @@ async function register(event) {
 
     }
 
-    message.style.display = "block";
+    const overlay = document.getElementById("overlay");
+
+    overlay.style.display = "flex";
 
     const messageButton = document.getElementById("messageButton");
 
     messageButton.addEventListener("click", () => {
-        message.style.display = "none";
+        overlay.style.display = "none";
     });
 
 }
