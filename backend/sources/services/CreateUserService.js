@@ -28,8 +28,8 @@ class CreateUserService {
         const hashPassword = await encryptPassword(password); // Criptografa a senha informada pelo usuário antes de armazená-la no banco de dados.
 
         const [createUserResult] = await connection.execute( // Executa a consulta para cadastrar o novo usuário.
-            `INSERT INTO users (name, login, password)
-            VALUES (?,?,?)`, [name, login, hashPassword]);
+        `INSERT INTO users (name, login, password)
+        VALUES (?,?,?)`, [name, login, hashPassword]);
 
         return { // Retorna os dados do usuário após o cadastro ser realizado com sucesso.
             id: createUserResult.insertId,
