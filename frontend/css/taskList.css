@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #0a1b1e,
+        #344856,
+        #4d839d
+    );
+
+    color: #0a1b1e;
+}
+
+
+/* HEADER */
+.header {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    background-color: #0a1b1e;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.header-title h1 {
+    font-size: 26px;
+}
+
+/*INFORMAÇÕES DO USUÁRIO*/
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*BOTÃO DE PERFIL*/
+.user-info button {
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* MENU PRINCIPAL*/
+.task-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 35px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* CABEÇALHO DAS TAREFAS */
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.task-header h2 {
+    margin-bottom: 5px;
+    color: #0a1b1e;
+}
+
+.task-header p {
+    color: #344856;
+}
+
+
+/* BOTÃO DE CRIAR TAREFA */
+.new-task-button {
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #55a39e;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.new-task-button:hover {
+    background-color: #4d839d;
+}
+
+
+/* BARRA DE PESQUISA */
+.task-actions {
+    margin-bottom: 30px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #4d839d;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+}
+
+.search-box input:focus {
+    border-color: #55a39e;
+}
+
+.search-box button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #344856;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* LISTA DE TAREFAS*/
+.task-list {
+    width: 100%;
+}
+
+
+/* CARD */
+.task-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    background-color: #ffffff;
+    border-left: 5px solid #4d839d;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* CONTEÚDO DO CARD */
+.task-content h3 {
+    margin-bottom: 15px;
+    color: #0a1b1e;
+}
+
+.task-content p {
+    margin-bottom: 8px;
+    color: #344856;
+}
+
+
+/* STATUS DA TAREFA*/
+.task-status {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.pending {
+    background-color: rgba(77, 131, 157, 0.15);
+    color: #4d839d;
+}
+
+
+/* BOTÃO CONCLUIR TAREFA */
+.complete-button {
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.complete-button:hover {
+    background-color: #4d839d;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 0 20px;
+    }
+
+    .task-container {
+        width: 95%;
+
+        padding: 20px;
+    }
+
+    .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .task-card {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+}

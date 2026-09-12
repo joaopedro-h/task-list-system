@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas</title>
+    <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/taskList.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="header-title">
+            <h1>Lista de tarefas</h1>
+        </div>
+
+        <div class="user-info">
+            <span>Testee</span>
+            <button type="button">▼</button>
+        </div>
+
+    </header>
+
+    <main class="task-container">
+
+        <section class="task-header">
+
+            <div>
+                <h2>Tarefas do setor</h2>
+                <p>Acompanhe e conclua as tarefas pendentes.</p>
+            </div>
+
+            <button type="button" class="new-task-button">
+                + Nova tarefa
+            </button>
+
+        </section>
+
+        <section class="task-actions">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchTask"
+                    placeholder="Pesquisar tarefa"
+                >
+
+                <button type="button">
+                    Pesquisar
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="task-list">
+
+            <article class="task-card">
+
+                <div class="task-content">
+
+                    <h3 id="taskTitle"></h3>
+
+                    <p>
+                        <strong id="taskResponsible">Responsável:</strong>                      
+                    </p>
+
+                    <p>
+                        <strong id="taskCreatedAt">Criada:</strong>               
+                    </p>
+
+                    <p id="taskStatus" class="task-status pending">
+                        Pendente
+                    </p>
+
+                </div>
+
+                <div class="task-buttons">
+
+                    <button type="button" class="complete-button">
+                        ✓ Concluir
+                    </button>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

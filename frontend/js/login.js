@@ -56,6 +56,11 @@ async function login(event) {
 
     messageButton.addEventListener("click", () => {
         overlay.style.display = "none";
+
+        if (response.ok) {
+            window.location.href = "pages/taskList.html"
+        }
+
     });
 
 }
