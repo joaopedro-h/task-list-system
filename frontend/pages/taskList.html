@@ -6,6 +6,8 @@
     <title>Lista de tarefas</title>
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
+    <script src="../js/createTask.js" defer></script>
+
 </head>
 
 <body>
@@ -32,9 +34,48 @@
                 <p>Acompanhe e conclua as tarefas pendentes.</p>
             </div>
 
-            <button type="button" class="new-task-button">
+            <button type="button" id="newTaskButton" class="new-task-button">
                 + Nova tarefa
             </button>
+
+            <div id="taskOverlay" class="overlay">
+
+                <div class="task-modal">
+
+                    <h2>Nova tarefa</h2>
+
+                    <form id="taskForm">
+
+                        <div class="form-group">
+
+                            <label for="taskTitle">Tarefa</label>
+
+                            <input
+                                type="text"
+                                id="taskTitle"
+                                placeholder="Digite a tarefa"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="modal-buttons">
+
+                            <button type="button" id="cancelTaskButton">
+                                Cancelar
+                            </button>
+
+                            <button type="submit">
+                                Criar tarefa
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
 
         </section>
 
@@ -65,7 +106,7 @@
                     <h3 id="taskTitle"></h3>
 
                     <p>
-                        <strong id="taskResponsible">Responsável:</strong>                      
+                        <strong id="taskResponsible">Responsável:</strong>                                          
                     </p>
 
                     <p>
