@@ -6,23 +6,23 @@ import authConfig from "../config/auth";
 
 class LoginUserService {
 
-    async execute({ email, password }){ // Método responsável por realizar o login do usuário.
+    async execute({ login, password }){ // Método responsável por realizar o login do usuário.
 
         const schema = Yup.object().shape({ // Cria um schema para validar os dados enviados pelo usuário.
-            email: Yup.string().email().required(), // Verifica se o email é uma string, possui formato válido e foi informado.
+            login: Yup.string().required(), // Verifica se o login é uma string, possui formato válido e foi informado.
             password: Yup.string().required().min(6), // Verifica se a senha é uma string, foi informada e possui no mínimo 6 caracteres.
         })
 
-        if (!(await schema.isValid({email, password}))) { // Verifica se os dados enviados pelo usuário estão de acordo com o schema.
+        if (!(await schema.isValid({login, password}))) { // Verifica se os dados enviados pelo usuário estão de acordo com o schema.
             throw new Error("Dados inválidos!");  
         }
 
         const [resultUser] = await connection.execute( // Executa a consulta para buscar o usuário pelo email.
             `SELECT * FROM users
-            WHERE email = ?`, [email]
+            WHERE login = ?`, [login]
         );
 
-        if (resultUser.length === 0) { // Verifica se nenhum usuário foi encontrado com o email informado.
+        if (resultUser.length === 0) { // Verifica se nenhum usuário foi encontrado com o login informado.
             throw new Error("Nenhum usuário encontrado!");
         }
 
@@ -36,7 +36,8 @@ class LoginUserService {
 
         return { // Retorna os dados do usuário após o login ser realizado com sucesso.
             id: user.id,
-            email: user.email,
+            name: user.name,
+            login: user.login,
             token: jwt.sign({id: user.id}, authConfig.secret, {
                 expiresIn: authConfig.expiresIn
             }),

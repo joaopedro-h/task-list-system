@@ -4,12 +4,13 @@ class RegisterController {
 
     async store(req, res){ // Método responsável por realizar o cadastro do usuário.
 
-        const { email, password } = req.body; // Pega o email e a senha enviados pelo usuário na requisição.
+        const { name, login, password } = req.body; // Pega o email e a senha enviados pelo usuário na requisição.
 
         try {
             
             const user = await CreateUserService.execute({ // Executa o serviço responsável por realizar o cadastro do usuário. (CreateUserService.js)
-                email, 
+                name,
+                login, 
                 password
             });
 

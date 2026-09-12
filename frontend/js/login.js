@@ -1,12 +1,14 @@
 const loginForm = document.getElementById("loginForm");
 
+let loginSuccess = false;
+
 loginForm.addEventListener("submit", login);
 
 async function login(event) {
     
     event.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const login = document.getElementById("login").value;
     const password = document.getElementById("password").value;
 
     const response = await fetch("http://localhost:3333/login/user", {
@@ -19,7 +21,7 @@ async function login(event) {
 
         body: JSON.stringify({
 
-            email: email,
+            login: login,
             password: password
 
         })
@@ -34,6 +36,7 @@ async function login(event) {
 
     if (response.ok) {
 
+        loginSuccess = true;
         localStorage.setItem("token", data.token);
         
         message.className = "message success";
@@ -41,6 +44,8 @@ async function login(event) {
         messageText.textContent = "Login realizado com sucesso!";
 
     }else {
+
+        loginSuccess = false;
 
         message.className = "message error";
         messageTitle.textContent = "Erro!"
@@ -52,15 +57,15 @@ async function login(event) {
 
     overlay.style.display = "flex";
 
-    const messageButton = document.getElementById("messageButton");
-
-    messageButton.addEventListener("click", () => {
-        overlay.style.display = "none";
-
-        if (response.ok) {
-            window.location.href = "pages/taskList.html"
-        }
-
-    });
-
 }
+
+const messageButton = document.getElementById("messageButton");
+
+messageButton.addEventListener("click", () => {
+    overlay.style.display = "none";
+
+    if (loginSuccess) {
+        window.location.href = "pages/taskList.html"
+    }
+
+});
