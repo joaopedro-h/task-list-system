@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
     <script src="../js/createTask.js" defer></script>
+    <script src="../js/loadTasks.js" defer></script>
+
 </head>
 
 <body>
@@ -63,7 +65,7 @@
                             <p id="taskMessage" class="task-message"></p>
                             
                             <button type="button" id="cancelTaskButton">
-                                Cancelar
+                                Sair
                             </button>
 
                             <button type="submit">
@@ -98,37 +100,7 @@
 
         </section>
 
-        <section class="task-list">
-
-            <article class="task-card">
-
-                <div class="task-content">
-
-                    <h3 id="taskTitle"></h3>
-
-                    <p>
-                        <strong id="taskResponsible">Responsável:</strong>                                          
-                    </p>
-
-                    <p>
-                        <strong id="taskCreatedAt">Criada:</strong>               
-                    </p>
-
-                    <p id="taskStatus" class="task-status pending">
-                        Pendente
-                    </p>
-
-                </div>
-
-                <div class="task-buttons">
-
-                    <button type="button" class="complete-button">
-                        ✓ Concluir
-                    </button>
-
-                </div>
-
-            </article>
+        <section class="task-list" id="taskList">
 
         </section>
 

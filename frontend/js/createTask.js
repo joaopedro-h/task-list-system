@@ -18,6 +18,7 @@ cancelTaskButton.addEventListener("click", () =>{
     taskOverlay.style.display = "none";
     taskForm.reset();
     taskMessage.textContent = "";
+    window.location.reload()
 });
 
 taskForm.addEventListener("submit", createTask);

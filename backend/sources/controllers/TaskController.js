@@ -1,4 +1,5 @@
 import CreateTaskService from "../services/CreateTaskService";
+import LoadTaskService from "../services/LoadTaskService";
 
 class TaskController {
 
@@ -21,6 +22,25 @@ class TaskController {
             return res.status(400).json({ // Retorna uma resposta informando que ocorreu uma falha durante o cadastro da tarefa.
                 error: error.message
             });
+
+        }
+
+    }
+
+
+    async index (req, res) {
+     
+        try {
+            
+            const tasks = await LoadTaskService.execute();
+
+            return res.status(200).json(tasks);
+
+        } catch (error) {
+            
+            return res.status(400).json({ // Retorna uma resposta informando que ocorreu uma falha durante a busca das tarefas.
+                error: error.message
+            });            
 
         }
 
