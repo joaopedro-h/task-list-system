@@ -11,7 +11,7 @@ class LoginController {
             const user = await LoginUserService.execute({ // Executa o serviço responsável por realizar o login do usuário. (LoginUserService.js)
                 login,
                 password
-            })          
+            });          
             
             return res.status(200).json(user); // Retorna os dados do usuário após o login ser realizado com sucesso (ID nome e login).
 

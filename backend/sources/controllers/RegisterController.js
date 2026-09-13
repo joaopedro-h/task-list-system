@@ -2,7 +2,7 @@ import CreateUserService from "../services/CreateUserService";
 
 class RegisterController {
 
-    async store(req, res){ // Método responsável por realizar o cadastro do usuário.
+    async store(req, res) { // Método responsável por realizar o cadastro do usuário.
 
         const { name, login, password } = req.body; // Pega o email e a senha enviados pelo usuário na requisição.
 
@@ -25,6 +25,7 @@ class RegisterController {
         }
 
     }
+
 }
 
 export default new RegisterController();

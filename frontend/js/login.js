@@ -1,4 +1,8 @@
 const loginForm = document.getElementById("loginForm");
+const message = document.getElementById('message');
+const messageTitle = document.getElementById('messageTitle');
+const messageText = document.getElementById('messageText');
+const messageButton = document.getElementById("messageButton");
 
 let loginSuccess = false;
 
@@ -30,10 +34,6 @@ async function login(event) {
 
     const data = await response.json();
 
-    const message = document.getElementById('message');
-    const messageTitle = document.getElementById('messageTitle');
-    const messageText = document.getElementById('messageText');
-
     if (response.ok) {
 
         loginSuccess = true;
@@ -58,8 +58,6 @@ async function login(event) {
     overlay.style.display = "flex";
 
 }
-
-const messageButton = document.getElementById("messageButton");
 
 messageButton.addEventListener("click", () => {
     overlay.style.display = "none";
