@@ -51,6 +51,7 @@ async function loadTasks() {
                 <button
                     type="button"
                     class="complete-button"
+                    data-task-id="${task.id}"
                 >
                     ✓ Concluir
                 </button>
@@ -61,7 +62,9 @@ async function loadTasks() {
         taskList.appendChild(taskCard);
 
     });
-    
+
+    completeTask();
+
 }
 
 loadTasks();

@@ -12,6 +12,8 @@ routes.post("/login/user", LoginController.store); // Cria a rota para o usuári
 
 routes.post("/tasks", authMiddleware, TaskController.store); // Cria a rota para criar uma tarefa.
 
-routes.get("/tasks", authMiddleware, TaskController.index); 
+routes.get("/tasks", authMiddleware, TaskController.index);
+
+routes.put("/tasks/:id/complete", authMiddleware, TaskController.complete);
 
 export default routes;

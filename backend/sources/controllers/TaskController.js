@@ -1,5 +1,6 @@
 import CreateTaskService from "../services/CreateTaskService";
 import LoadTaskService from "../services/LoadTaskService";
+import CompleteTaskService from "../services/CompleteTaskService";
 
 class TaskController {
 
@@ -46,6 +47,30 @@ class TaskController {
 
     }
 
+
+    async complete (req, res) {
+
+        const taskId = req.params.id;
+        const userId = req.userId;
+
+        try {
+            
+            const taskComplete = await CompleteTaskService.execute({
+                taskId,
+                userId
+            });
+
+            return res.status(200).json(taskComplete);
+
+        } catch (error) {
+
+            return res.status(400).json({ 
+                error: error.message
+            });
+
+        }
+        
+    }
 }
 
 export default new TaskController();
