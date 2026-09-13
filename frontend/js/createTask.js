@@ -1,9 +1,23 @@
 const newTaskButton = document.getElementById("newTaskButton");
+const cancelTaskButton = document.getElementById("cancelTaskButton");
+
 const taskOverlay = document.getElementById("taskOverlay");
 const taskForm = document.getElementById("taskForm");
 
+const userName = localStorage.getItem("userName");
+const userNameSpan = document.getElementById("userName");
+userNameSpan.textContent = userName;
+
+const taskMessage = document.getElementById("taskMessage");
+
 newTaskButton.addEventListener("click", () =>{
     taskOverlay.style.display = "flex";
+});
+
+cancelTaskButton.addEventListener("click", () =>{
+    taskOverlay.style.display = "none";
+    taskForm.reset();
+    taskMessage.textContent = "";
 });
 
 taskForm.addEventListener("submit", createTask);
@@ -35,8 +49,8 @@ async function createTask(event) {
 
     if (response.ok) {
         
-        console.log("Tarefa criada com sucesso!");
-        console.log(data.task);
+        taskMessage.className = "task-message success";
+        taskMessage.textContent = "Tarefa criada com sucesso!";
         
     }else if (response.status === 401){
 
@@ -45,7 +59,8 @@ async function createTask(event) {
 
     }else{
 
-        console.log("TESTE");
+        taskMessage.className = "task-message error";
+        taskMessage.textContent = data.error;
         
     }
 

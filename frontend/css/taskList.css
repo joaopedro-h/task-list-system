@@ -340,3 +340,17 @@ body {
 .modal-buttons button[type="submit"]:hover {
     background-color: #4d839d;
 }
+
+.task-message {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.task-message.success {
+    color: #55a39e;
+}
+
+.task-message.error {
+    color: #b33a3a;
+}

@@ -37,7 +37,9 @@ async function login(event) {
     if (response.ok) {
 
         loginSuccess = true;
+        
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.name);
         
         message.className = "message success";
         messageTitle.textContent = "Sucesso!";

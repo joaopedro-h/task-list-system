@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
     <script src="../js/createTask.js" defer></script>
-
 </head>
 
 <body>
@@ -19,7 +18,7 @@
         </div>
 
         <div class="user-info">
-            <span>Testee</span>
+            <span id="userName"></span>
             <button type="button">▼</button>
         </div>
 
@@ -61,6 +60,8 @@
 
                         <div class="modal-buttons">
 
+                            <p id="taskMessage" class="task-message"></p>
+                            
                             <button type="button" id="cancelTaskButton">
                                 Cancelar
                             </button>
