@@ -181,7 +181,12 @@ body {
 }
 
 .pending {
-    background-color: rgba(77, 131, 157, 0.15);
+    background-color: rgba(232, 236, 32, 0.644);
+    color: #4d839d;
+}
+
+.completed {
+    background-color: rgba(88, 255, 116, 0.568);
     color: #4d839d;
 }
 
@@ -189,7 +194,6 @@ body {
 /* BOTÃO CONCLUIR TAREFA */
 .complete-button {
     padding: 10px 18px;
-
     border: none;
     border-radius: 8px;
     background-color: #55a39e;
@@ -205,7 +209,6 @@ body {
 
 
 /* RESPONSIVIDADE */
-
 @media (max-width: 700px) {
 
     .header {

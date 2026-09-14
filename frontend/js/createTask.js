@@ -18,7 +18,6 @@ cancelTaskButton.addEventListener("click", () =>{
     taskOverlay.style.display = "none";
     taskForm.reset();
     taskMessage.textContent = "";
-    window.location.reload()
 });
 
 taskForm.addEventListener("submit", createTask);
@@ -52,6 +51,9 @@ async function createTask(event) {
         
         taskMessage.className = "task-message success";
         taskMessage.textContent = "Tarefa criada com sucesso!";
+
+        taskForm.reset();
+        await loadTasks();
         
     }else if (response.status === 401){
 

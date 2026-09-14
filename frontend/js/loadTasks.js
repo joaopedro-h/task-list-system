@@ -16,6 +16,11 @@ async function loadTasks() {
 
     const tasks = await response.json();
 
+    if (!response.ok) {
+        console.log(tasks.error);
+        return;
+    }
+
     taskList.innerHTML = "";
 
     tasks.forEach(task => {
@@ -24,40 +29,81 @@ async function loadTasks() {
 
         taskCard.classList.add("task-card");
 
-        taskCard.innerHTML = `
+        if (task.status === "completed") {
 
-            <div class="task-content">
+            taskCard.innerHTML = `
+                <div class="task-content">
 
-                <h3>${task.task}</h3>
+                    <h3>${task.task}</h3>
 
-                <p>
-                    <strong>Responsável:</strong>
-                    ${task.user_name}
-                </p>
+                    <p>
+                        <strong>Responsável:</strong>
+                        ${task.user_name}
+                    </p>
 
-                <p>
-                    <strong>Criada:</strong>
-                    ${task.created_at}
-                </p>
+                    <p>
+                        <strong>Criada:</strong>
+                        ${task.created_at}
+                    </p>                   
 
-                <p class="task-status pending">
-                    Pendente
-                </p>
+                    <p class="task-status completed">
+                        Concluída ✓
+                    </p>
 
-            </div>
+                    <div class="completion-info">
 
-            <div class="task-buttons">
+                        <p>
+                            <strong>Concluída por:</strong>
+                            ${task.completed_by}
+                        </p>
 
-                <button
-                    type="button"
-                    class="complete-button"
-                    data-task-id="${task.id}"
-                >
-                    ✓ Concluir
-                </button>
+                        <p>
+                            <strong>Concluída:</strong>
+                            ${task.completed_at}
+                        </p>
 
-            </div>
-        `;
+                    </div>
+
+                </div>
+            `;
+
+        } else {
+
+            taskCard.innerHTML = `
+                <div class="task-content">
+
+                    <h3>${task.task}</h3>
+
+                    <p>
+                        <strong>Responsável:</strong>
+                        ${task.user_name}
+                    </p>
+
+                    <p>
+                        <strong>Criada:</strong>
+                        ${task.created_at}
+                    </p>
+
+                    <p class="task-status pending">
+                        Pendente
+                    </p>
+
+                </div>
+
+                <div class="task-buttons">
+
+                    <button
+                        type="button"
+                        class="complete-button"
+                        data-task-id="${task.id}"
+                    >
+                        ✓ Concluir
+                    </button>
+
+                </div>
+            `;
+
+        }
 
         taskList.appendChild(taskCard);
 

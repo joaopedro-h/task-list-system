@@ -10,12 +10,16 @@ class LoadTaskService {
                 tasks.task,
                 tasks.status,
                 DATE_FORMAT(tasks.created_at, '%d/%m/%Y - %H:%i') AS created_at,
-                users.name AS user_name
+                creator.name AS user_name,
+                completed.name AS completed_by,
+                DATE_FORMAT(tasks.completed_at, '%d/%m/%Y - %H:%i') AS completed_at
             FROM tasks
-            JOIN users
-            ON tasks.created_by = users.id;`
+            JOIN users AS creator
+            ON tasks.created_by = creator.id
+            LEFT JOIN users AS completed
+            ON tasks.completed_by = completed.id;`
         );
-
+   
         return resultTasks;
 
     }
