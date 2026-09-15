@@ -1,6 +1,7 @@
 import CreateTaskService from "../services/CreateTaskService";
 import LoadTaskService from "../services/LoadTaskService";
 import CompleteTaskService from "../services/CompleteTaskService";
+import SearchTaskService from "../services/SearchTaskService";
 
 class TaskController {
 
@@ -70,6 +71,19 @@ class TaskController {
 
         }
         
+    }
+
+
+    async show (req, res) {
+
+        const researchedTask = req.params.name;
+
+        const taskFound = await SearchTaskService.execute({
+            researchedTask
+        });
+
+        return res.status(200).json(taskFound);
+
     }
 }
 
