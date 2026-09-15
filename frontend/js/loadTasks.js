@@ -97,7 +97,7 @@ async function loadTasks() {
                         class="complete-button"
                         data-task-id="${task.id}"
                     >
-                        ✓ Concluir
+                        Concluir ✓
                     </button>
 
                 </div>

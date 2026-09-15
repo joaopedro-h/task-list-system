@@ -17,7 +17,13 @@ class LoadTaskService {
             JOIN users AS creator
             ON tasks.created_by = creator.id
             LEFT JOIN users AS completed
-            ON tasks.completed_by = completed.id;`
+            ON tasks.completed_by = completed.id
+            ORDER BY 
+                CASE 
+                    WHEN tasks.status = 'pending' THEN 0
+                    WHEN tasks.status = 'completed' THEN 1
+                END,
+                tasks.created_at DESC;`
         );
    
         return resultTasks;
