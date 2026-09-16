@@ -6,10 +6,12 @@
     <title>Lista de tarefas</title>
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
+    <link rel="stylesheet" href="../css/logout.css">
     <script src="../js/completeTask.js" defer></script>
     <script src="../js/loadTasks.js" defer></script>
     <script src="../js/createTask.js" defer></script>
     <script src="../js/searchTask.js" defer></script>
+    <script src="../js/logout.js" defer></script>
 
 </head>
 
@@ -23,7 +25,13 @@
 
         <div class="user-info">
             <span id="userName"></span>
-            <button type="button">▼</button>
+
+            <button id="userMenuButton" type="button">▼</button>
+
+            <div id="userMenu" class="user-menu">
+                <button id="logoutButton" type="button">Sair</button>
+            </div>
+
         </div>
 
     </header>
