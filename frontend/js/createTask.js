@@ -22,6 +22,15 @@ cancelTaskButton.addEventListener("click", () =>{
 
 taskForm.addEventListener("submit", createTask);
 
+const taskInput = document.getElementById("createTaskButton");
+
+taskInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        createTask(event);
+    }
+});
+
 async function createTask(event) {
     
     event.preventDefault();

@@ -1,7 +1,13 @@
 const searchButton = document.getElementById('searchButton');
-const taskListt = document.getElementById('taskList');
+const searchInput = document.getElementById("researchedTask");
 
 searchButton.addEventListener("click", searchTask)
+
+searchInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        searchTask();
+    }
+});
 
 async function searchTask() {
 
@@ -9,7 +15,7 @@ async function searchTask() {
 
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`http://localhost:3333/tasks/${researchedTask}/search`, {
+    const response = await fetch(`http://localhost:3333/tasks/${encodeURIComponent(researchedTask)}/search`, {
 
         method: "GET",
 
@@ -21,7 +27,12 @@ async function searchTask() {
 
     const taskFound = await response.json();
 
-    taskListt.innerHTML = "";
+    if (!response.ok) {
+        console.log(taskFound.error);
+        return;
+    }
+
+    taskList.innerHTML = "";
 
     taskFound.forEach(task => {
 

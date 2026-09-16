@@ -2,7 +2,7 @@ import connection from "../database/connection";
 
 class SearchTaskService {
  
-    async execute ({ researchedTask }) {
+    async execute ({ taskName }) {
 
         const [searchTask] = await connection.execute(
             `SELECT
@@ -18,14 +18,18 @@ class SearchTaskService {
             ON tasks.created_by = creator.id
             LEFT JOIN users AS completed
             ON tasks.completed_by = completed.id
-            WHERE task = ?
+            WHERE task LIKE ?
             ORDER BY 
                 CASE 
                     WHEN tasks.status = 'pending' THEN 0
                     WHEN tasks.status = 'completed' THEN 1
                 END,
-                tasks.created_at DESC;`, [researchedTask]
+                tasks.created_at DESC;`, [`%${taskName}%`]
         );
+
+        if (searchTask.length === 0) {
+            throw new Error("Nenhuma tarefa encontrada!");
+        }
         
         return searchTask;
 

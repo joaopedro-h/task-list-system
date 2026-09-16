@@ -76,13 +76,23 @@ class TaskController {
 
     async show (req, res) {
 
-        const researchedTask = req.params.name;
+        const taskName = req.params.name;
 
-        const taskFound = await SearchTaskService.execute({
-            researchedTask
-        });
+        try {
+            
+            const taskFound = await SearchTaskService.execute({
+                taskName
+            });
+    
+            return res.status(200).json(taskFound);
 
-        return res.status(200).json(taskFound);
+        } catch (error) {
+            
+            return res.status(400).json({ 
+                error: error.message
+            });
+
+        }
 
     }
 }
