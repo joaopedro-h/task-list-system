@@ -2,9 +2,9 @@ import connection from "../database/connection";
 
 class CompleteTaskService {
 
-    async execute ({ taskId, userId }) {
+    async execute ({ taskId, userId }) { // Método responsável por concluir uma tarefa.
 
-        await connection.execute(
+        await connection.execute( // Executa a consulta para atualizar a tarefa como concluída no banco de dados.
             `UPDATE tasks
             SET 
                 status = "completed",
@@ -13,7 +13,7 @@ class CompleteTaskService {
             WHERE id = ?`, [userId, taskId]                    
         );
 
-        const [taskCompleted] = await connection.execute(
+        const [taskCompleted] = await connection.execute( // Executa a consulta para buscar os dados atualizados da tarefa após a conclusão.
             `SELECT
                 tasks.id,
                 tasks.task,
@@ -27,7 +27,7 @@ class CompleteTaskService {
 
         );
 
-        return taskCompleted[0];
+        return taskCompleted[0]; // Retorna os dados da tarefa que foi concluída.
 
     }
 

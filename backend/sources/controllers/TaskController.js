@@ -30,17 +30,17 @@ class TaskController {
     }
 
 
-    async index (req, res) {
+    async index (req, res) { // Método responsável por buscar e exibir as tarefa.
      
         try {
             
-            const tasks = await LoadTaskService.execute();
+            const tasks = await LoadTaskService.execute(); // Executa o serviço responsável por buscar as tarefas cadastradas no banco de dados. (LoadTaskService.js)
 
-            return res.status(200).json(tasks);
+            return res.status(200).json(tasks); // Retorna as tarefas encontradas após a busca ser realizada com sucesso.
 
         } catch (error) {
             
-            return res.status(400).json({ // Retorna uma resposta informando que ocorreu uma falha durante a busca das tarefas.
+            return res.status(404).json({ // Retorna uma resposta informando que ocorreu uma falha durante a busca das tarefas.
                 error: error.message
             });            
 
@@ -49,23 +49,23 @@ class TaskController {
     }
 
 
-    async complete (req, res) {
+    async complete (req, res) { // Método responsável por concluir uma tarefa.
 
-        const taskId = req.params.id;
-        const userId = req.userId;
+        const taskId = req.params.id; // Pega o ID da tarefa enviado como parâmetro na rota da requisição.
+        const userId = req.userId; // Pega o ID do usuário autenticado que foi adicionado na requisição pelo middleware de autenticação.
 
         try {
             
-            const taskComplete = await CompleteTaskService.execute({
+            const taskComplete = await CompleteTaskService.execute({ // Executa o serviço responsável por realizar a conclusão da tarefa. (CompleteTaskService.js)
                 taskId,
                 userId
             });
 
-            return res.status(200).json(taskComplete);
+            return res.status(200).json(taskComplete); // Retorna os dados da tarefa após ela ser concluída com sucesso.
 
         } catch (error) {
 
-            return res.status(400).json({ 
+            return res.status(400).json({  // Retorna uma resposta informando que ocorreu uma falha durante a conclusão da tarefa.
                 error: error.message
             });
 
@@ -74,21 +74,21 @@ class TaskController {
     }
 
 
-    async show (req, res) {
+    async show (req, res) { // Método responsável por pesquisar uma tarefa.
 
-        const taskName = req.params.name;
+        const taskName = req.params.name; // Pega o nome da tarefa enviado como parâmetro na rota da requisição.
 
         try {
             
-            const taskFound = await SearchTaskService.execute({
+            const taskFound = await SearchTaskService.execute({ // Executa o serviço responsável por realizar a busca da tarefa. (SearchTaskService.js)
                 taskName
             });
     
-            return res.status(200).json(taskFound);
+            return res.status(200).json(taskFound); // Retorna os dados da tarefa encontrada após a busca ser realizada com sucesso.
 
         } catch (error) {
             
-            return res.status(400).json({ 
+            return res.status(404).json({ // Retorna uma resposta informando que nenhuma tarefa foi encontrada durante a busca.
                 error: error.message
             });
 

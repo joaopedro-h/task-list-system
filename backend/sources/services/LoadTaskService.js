@@ -25,7 +25,11 @@ class LoadTaskService {
                 END,
                 tasks.created_at DESC;`
         );
-   
+        
+        if (resultTasks.length === 0) {
+            throw new Error("Nenhuma tarefa encontrada!");
+        }
+
         return resultTasks;
 
     }

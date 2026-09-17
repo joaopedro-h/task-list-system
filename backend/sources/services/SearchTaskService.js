@@ -2,9 +2,9 @@ import connection from "../database/connection";
 
 class SearchTaskService {
  
-    async execute ({ taskName }) {
+    async execute ({ taskName }) { // Método responsável por pesquisar uma tarefa pelo nome informado.
 
-        const [searchTask] = await connection.execute(
+        const [searchTask] = await connection.execute( // Executa a consulta para buscar as tarefas que possuem o nome pesquisado pelo usuário.
             `SELECT
                 tasks.id,
                 tasks.task,
@@ -24,14 +24,14 @@ class SearchTaskService {
                     WHEN tasks.status = 'pending' THEN 0
                     WHEN tasks.status = 'completed' THEN 1
                 END,
-                tasks.created_at DESC;`, [`%${taskName}%`]
+                tasks.created_at DESC;`, [`%${taskName}%`] // Utiliza o LIKE com "%" para permitir buscar tarefas que tenha o texto informado pelo usuário.
         );
 
-        if (searchTask.length === 0) {
-            throw new Error("Nenhuma tarefa encontrada!");
+        if (searchTask.length === 0) { // Verifica se nenhuma tarefa foi encontrada com o texto informado.
+            throw new Error("Nenhuma tarefa encontrada!"); // Interrompe a execução e retorna um erro caso nenhuma tarefa seja encontrada.
         }
         
-        return searchTask;
+        return searchTask; // Retorna as tarefas encontradas após a busca ser realizada com sucesso.
 
     }
 
