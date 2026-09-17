@@ -85,19 +85,13 @@ body {
 /* BOTÃO DE CRIAR TAREFA */
 .new-task-button {
     padding: 12px 20px;
-
     border: none;
     border-radius: 8px;
-
     background-color: #55a39e;
-
     color: white;
-
     font-size: 15px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -105,6 +99,28 @@ body {
     background-color: #4d839d;
 }
 
+/* BOTÃO DE LIMPAR BUSCA */
+.clear-search-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.clear-search-button:hover {
+    background-color: #4d839d;
+}
+
+.task-header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
 /* BARRA DE PESQUISA */
 .task-actions {

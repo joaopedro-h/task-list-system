@@ -1,4 +1,5 @@
 const searchButton = document.getElementById('searchButton');
+const clearSearchButton = document.getElementById('clearSearchButton');
 const searchInput = document.getElementById("researchedTask");
 
 searchButton.addEventListener("click", searchTask)
@@ -7,6 +8,14 @@ searchInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         searchTask();
     }
+});
+
+clearSearchButton.addEventListener("click", async () => {
+
+    searchInput.value = "";
+
+    await loadTasks();
+
 });
 
 async function searchTask() {
