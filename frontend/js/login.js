@@ -1,21 +1,21 @@
-const loginForm = document.getElementById("loginForm");
+const loginForm = document.getElementById("loginForm"); // Pega as informações necessárias do front-end para realizar o login.
+const overlay = document.getElementById("overlay"); // Pega o overlay utilizado para exibir o resultado do login.
 const message = document.getElementById('message');
 const messageTitle = document.getElementById('messageTitle');
 const messageText = document.getElementById('messageText');
 const messageButton = document.getElementById("messageButton");
 
-let loginSuccess = false;
+let loginSuccess = false; // Armazena o resultado do login para controlar o redirecionamento.
 
-loginForm.addEventListener("submit", login);
+loginForm.addEventListener("submit", login); // Executa a função de login ao enviar o formulário.
 
-async function login(event) {
-    
-    event.preventDefault();
+async function login(event) { // Função responsável por realizar o login do usuário.
 
-    const login = document.getElementById("login").value;
+    event.preventDefault(); // Impede o recarregamento da página ao enviar o formulário.
+
+    const login = document.getElementById("login").value; // Pega os valores inseridos pelo usuário no formulário.
     const password = document.getElementById("password").value;
-
-    const response = await fetch("http://localhost:3333/login/user", {
+    const response = await fetch("http://localhost:3333/login/user", { // Envia os dados de login para o backend.
 
         method: "POST",
 
@@ -32,15 +32,15 @@ async function login(event) {
 
     });
 
-    const data = await response.json();
+    const data = await response.json(); // Converte a resposta JSON recebida do backend para um objeto ou array JavaScript.
 
-    if (response.ok) {
+    if (response.ok) { // Verifica se o login foi realizado com sucesso.
 
         loginSuccess = true;
-        
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userName", data.name);
-        
+
+        localStorage.setItem("token", data.token); // Armazena o token e o nome do usuário no navegador.
+        localStorage.setItem("userName", data.name); // Armazena o nome do usuário no navegador para usar depois o login.
+
         message.className = "message success";
         messageTitle.textContent = "Sucesso!";
         messageText.textContent = "Login realizado com sucesso!";
@@ -54,17 +54,16 @@ async function login(event) {
         messageText.textContent = data.error;
 
     }
-    
-    const overlay = document.getElementById("overlay");
 
-    overlay.style.display = "flex";
+    overlay.style.display = "flex"; // Exibe a mensagem de sucesso ou erro para o usuário.
 
 }
 
-messageButton.addEventListener("click", () => {
+messageButton.addEventListener("click", () => { // Fecha a mensagem exibida após a tentativa de login.
+
     overlay.style.display = "none";
 
-    if (loginSuccess) {
+    if (loginSuccess) { // Redireciona para a lista de tarefas caso o login tenha sido realizado com sucesso.
         window.location.href = "pages/taskList.html"
     }
 

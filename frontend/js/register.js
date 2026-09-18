@@ -1,29 +1,29 @@
-const registerForm = document.getElementById("registerForm");
+const registerForm = document.getElementById("registerForm"); // Pega as informações necessárias do front-end para realizar o cadastro.
 const overlay = document.getElementById("overlay");
 const message = document.getElementById('message');
 const messageTitle = document.getElementById('messageTitle');
 const messageText = document.getElementById('messageText');
 const messageButton = document.getElementById("messageButton");
 
-let registerSuccess = false;
+let registerSuccess = false; // Armazena o resultado do cadastro para controlar o redirecionamento.
 
-registerForm.addEventListener("submit", register);
+registerForm.addEventListener("submit", register); // Executa a função de cadastro ao enviar o formulário.
 
-async function register(event) {
-    
-    event.preventDefault();
+async function register(event) { // Função responsável por realizar o cadastro do usuário.
 
-    const name = document.getElementById('name').value;
+    event.preventDefault(); // Impede o recarregamento da página ao enviar o formulário.
+
+    const name = document.getElementById('name').value; // Pega os valores inseridos pelo usuário no formulário.
     const login = document.getElementById('login').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    if (password != confirmPassword) {
+    if (password != confirmPassword) { // Valida se a senha e a confirmação de senha são iguais.
         alert('As senhas não coincidem.');
         return;       
     }
 
-    const response = await fetch("http://localhost:3333/register/user", {
+    const response = await fetch("http://localhost:3333/register/user", { // Envia os dados do cadastro para o backend.
 
         method: "POST",
 
@@ -41,9 +41,9 @@ async function register(event) {
 
     });
 
-    const data = await response.json();
+    const data = await response.json(); // Converte a resposta JSON recebida do backend para um objeto ou array JavaScript.
 
-    if (response.ok) {
+    if (response.ok) { // Verifica se o cadastro foi realizado com sucesso.
 
         registerSuccess = true;
 
@@ -61,14 +61,15 @@ async function register(event) {
 
     }
 
-    overlay.style.display = "flex";
+    overlay.style.display = "flex"; // Exibe a mensagem de sucesso ou erro para o usuário.
 
 }
 
-messageButton.addEventListener("click", () => {
+messageButton.addEventListener("click", () => { // Fecha a mensagem exibida após a tentativa de cadastro.
+
     overlay.style.display = "none";
 
-    if (registerSuccess) {
+    if (registerSuccess) { // Redireciona para o login caso o cadastro tenha sido concluído.
         window.location.href = "login.html"
     }
 

@@ -1,35 +1,35 @@
-const taskList = document.getElementById('taskList');
+const taskList = document.getElementById('taskList'); // Pega o elemento do front-end onde as tarefas serão exibidas.
 
-async function loadTasks() {
+async function loadTasks() { // Função responsável por buscar e exibir as tarefas cadastradas.
     
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
-    const response = await fetch("http://localhost:3333/tasks", {
+    const response = await fetch("http://localhost:3333/tasks", { // Envia uma requisição ao backend para buscar todas as tarefas.
         
         method: "GET",
 
         headers: {
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
         }
 
     });
 
-    const tasks = await response.json();
+    const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
 
-    if (!response.ok) {
+    if (!response.ok) { // Verifica se ocorreu algum erro durante a busca das tarefas.
         console.log(tasks.error);
-        return;
+        return; // Interrompe a execução caso a busca não seja realizada com sucesso.
     }
 
-    taskList.innerHTML = "";
+    taskList.innerHTML = ""; // Limpa a lista atual antes de exibir novamente as tarefas.
 
-    tasks.forEach(task => {
+    tasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
 
-        const taskCard = document.createElement("article");
+        const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
 
         taskCard.classList.add("task-card");
 
-        if (task.status === "completed") {
+        if (task.status === "completed") { // Verifica se a tarefa está concluída para montar o card correspondente.
 
             taskCard.innerHTML = `
                 <div class="task-content">
@@ -67,7 +67,7 @@ async function loadTasks() {
                 </div>
             `;
 
-        } else {
+        } else { // Caso a tarefa ainda esteja pendente, monta o card com a opção de conclusão.
 
             taskCard.innerHTML = `
                 <div class="task-content">
@@ -105,12 +105,12 @@ async function loadTasks() {
 
         }
 
-        taskList.appendChild(taskCard);
+        taskList.appendChild(taskCard); // Adiciona o card criado na lista de tarefas.
 
     });
 
-    completeTask();
+    completeTask(); // Adiciona a ação de conclusão aos botões das tarefas pendentes.
 
 }
 
-loadTasks();
+loadTasks(); // Carrega as tarefas assim que a página é iniciada.
