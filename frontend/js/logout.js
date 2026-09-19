@@ -18,6 +18,6 @@ logoutButton.addEventListener("click", () => { // Quando o usuário clicar em "S
     localStorage.removeItem("token"); // Apaga o token salvo no navegador para remover a autenticação do usuário.
     localStorage.removeItem("userName"); // Apaga também o nome do usuário que estava salvo no navegador.
 
-    window.location.href = "../login.html"; // Volta o usuário para a página de login após realizar o logout.
+    window.location.href = "../index.html"; // Volta o usuário para a página de login após realizar o logout.
 
 });

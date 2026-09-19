@@ -72,7 +72,7 @@ messageButton.addEventListener("click", () => { // Fecha a mensagem exibida apó
     overlay.style.display = "none";
 
     if (registerSuccess) { // Redireciona para o login caso o cadastro tenha sido concluído.
-        window.location.href = "login.html"
+        window.location.href = "index.html"
     }
 
 });
