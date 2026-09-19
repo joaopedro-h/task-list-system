@@ -12,6 +12,7 @@
     "sucrase": "^3.35.1"
   },
   "scripts": {
-    "dev": "nodemon backend/sources/server.js"
+    "dev": "nodemon backend/sources/server.js",
+    "start": "node -r sucrase/register backend/sources/server.js"
   }
 }
