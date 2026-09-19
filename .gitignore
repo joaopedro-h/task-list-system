@@ -1,4 +1,3 @@
 .env
 node_modules/
-backend/sources/database/connection.js
 /nodemon.json
