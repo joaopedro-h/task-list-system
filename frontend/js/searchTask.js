@@ -17,6 +17,14 @@ clearSearchButton.addEventListener("click", async () => { // Limpa o campo de pe
 
 });
 
+const searchOverlay = document.getElementById('searchOverlay');
+const searchMessageButton = document.getElementById('searchMessageButton');
+
+searchMessageButton.addEventListener("click", () => {
+    searchInput.value = "";
+    searchOverlay.style.display = "none";
+});
+
 async function searchTask() { // Função responsável por realizar a busca de tarefas.
 
     const researchedTask = document.getElementById('researchedTask').value; // Pega o valor inserido pelo usuário no campo de pesquisa.
@@ -35,8 +43,8 @@ async function searchTask() { // Função responsável por realizar a busca de t
 
     const taskFound = await response.json(); // Converte a resposta JSON recebida do backend para um objeto ou array JavaScript.
 
-    if (!response.ok) { // Verifica se ocorreu algum erro durante a busca.
-        console.log(taskFound.error);
+    if (response.status === 404) { // Verifica se ocorreu algum erro durante a busca.
+        searchOverlay.style.display = "flex";
         return; // Interrompe a execução caso a busca não seja realizada com sucesso.
     }
 
