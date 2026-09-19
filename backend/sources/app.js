@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from "express";
+import cors from "cors";
 import routes from "./routes/routes";
 
 class App { // Classe para configurar o Express.
@@ -15,6 +16,12 @@ class App { // Classe para configurar o Express.
 
     // Configura os middlewares.
     middlewares(){
+        this.server.use(cors({
+            origin: "https://task-list-system-1ewu.onrender.com",
+            methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+            allowedHeaders: ["Content-Type", "Authorization"]
+        }));
+
         this.server.use(express.json());
     }
 
