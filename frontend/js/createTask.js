@@ -42,7 +42,9 @@ async function createTask(event) { // Função responsável por realizar a cria�
 
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
-    const response = await fetch("http://localhost:3333/tasks", { // Envia os dados da nova tarefa para o backend.
+    const API_URL = "https://task-list-system-api.onrender.com";
+
+    const response = await fetch(`${API_URL}/tasks`, { // Envia os dados da nova tarefa para o backend.
 
         method: "POST",
 

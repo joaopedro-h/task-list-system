@@ -23,7 +23,9 @@ async function register(event) { // Função responsável por realizar o cadastr
         return;       
     }
 
-    const response = await fetch("http://localhost:3333/register/user", { // Envia os dados do cadastro para o backend.
+    const API_URL = "https://task-list-system-api.onrender.com";
+
+    const response = await fetch(`${API_URL}/register/user`, { // Envia os dados do cadastro para o backend.
 
         method: "POST",
 

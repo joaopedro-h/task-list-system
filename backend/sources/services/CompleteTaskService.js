@@ -7,7 +7,7 @@ class CompleteTaskService {
         await connection.execute( // Executa a consulta para atualizar a tarefa como concluída no banco de dados.
             `UPDATE tasks
             SET 
-                status = "completed",
+                status = 'completed',
                 completed_by = ?,
                 completed_at = CURRENT_TIMESTAMP
             WHERE id = ?`, [userId, taskId]                    

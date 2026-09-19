@@ -31,7 +31,9 @@ async function searchTask() { // Função responsável por realizar a busca de t
 
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
-    const response = await fetch(`http://localhost:3333/tasks/${encodeURIComponent(researchedTask)}/search`, {
+    const API_URL = "https://task-list-system-api.onrender.com";
+
+    const response = await fetch(`${API_URL}/tasks/${encodeURIComponent(researchedTask)}/search`, {
 
         method: "GET",
 

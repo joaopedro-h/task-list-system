@@ -10,7 +10,9 @@ async function completeTask() { // Função responsável por concluir uma tarefa
 
             const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no "localStorage".
 
-            const response = await fetch(`http://localhost:3333/tasks/${taskId}/complete`, { // Envia a requisição para concluir a tarefa utilizando o ID na rota.
+            const API_URL = "https://task-list-system-api.onrender.com";
+
+            const response = await fetch(`${API_URL}/tasks/${taskId}/complete`, { // Envia a requisição para concluir a tarefa utilizando o ID na rota.
 
                 method: "PUT", // Define o método PUT para atualizar os dados da tarefa.
 

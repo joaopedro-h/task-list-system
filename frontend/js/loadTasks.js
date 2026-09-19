@@ -4,7 +4,9 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
     
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
-    const response = await fetch("http://localhost:3333/tasks", { // Envia uma requisição ao backend para buscar todas as tarefas.
+    const API_URL = "https://task-list-system-api.onrender.com";
+
+    const response = await fetch(`${API_URL}/tasks`, { // Envia uma requisição ao backend para buscar todas as tarefas.
         
         method: "GET",
 
