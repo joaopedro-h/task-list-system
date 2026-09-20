@@ -9,10 +9,10 @@ class SearchTaskService {
                 tasks.id,
                 tasks.task,
                 tasks.status,
-                DATE_FORMAT(tasks.created_at, '%d/%m/%Y - %H:%i') AS created_at,
+                DATE_FORMAT(CONVERT_TZ(tasks.created_at, '+00:00', '-03:00'),'%d/%m/%Y - %H:%i') AS created_at,
                 creator.name AS user_name,
                 completed.name AS completed_by,
-                DATE_FORMAT(tasks.completed_at, '%d/%m/%Y - %H:%i') AS completed_at
+                DATE_FORMAT(CONVERT_TZ(tasks.completed_at, '+00:00', '-03:00'),'%d/%m/%Y - %H:%i') AS completed_at
             FROM tasks
             JOIN users AS creator
             ON tasks.created_by = creator.id
