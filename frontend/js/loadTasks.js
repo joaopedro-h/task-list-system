@@ -116,3 +116,9 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
 }
 
 loadTasks(); // Carrega as tarefas assim que a página é iniciada.
+
+setInterval(async () => { // Atualiza automaticamente a lista de tarefas a cada 30 segundos.
+
+    await loadTasks();
+
+}, 30000);
