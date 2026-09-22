@@ -208,9 +208,9 @@ body {
 
 .task-buttons {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 /* BOTÃO CONCLUIR TAREFA */
@@ -223,6 +223,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    white-space: nowrap;
 }
 
 .complete-button:hover {
@@ -238,6 +239,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    white-space: nowrap;
 }
 
 .edit-button:hover {
@@ -382,6 +384,9 @@ body {
 }
 
 .task-message {
+    flex: 1;
+    text-align: left;
+    margin: 0;
     margin-top: 15px;
     font-size: 14px;
     font-weight: bold;

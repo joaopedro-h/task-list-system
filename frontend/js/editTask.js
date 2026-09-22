@@ -3,11 +3,15 @@ const editTaskInput = document.getElementById('editTask');
 const editTaskForm = document.getElementById('editTaskForm');
 const cancelEditTaskButton = document.getElementById('cancelEditTaskButton');
 
+const taskMessageEdit = document.getElementById('taskMessageEdit');
+
 cancelEditTaskButton.addEventListener("click", () => {
     editTaskOverlay.style.display = "none";
+    taskMessageEdit.textContent = ""
 });
 
 let taskId;
+let taskName;
 
 function editTask() {
     
@@ -18,7 +22,7 @@ function editTask() {
         button.addEventListener("click", () => {
             
             taskId = button.dataset.taskId;
-            const taskName = button.dataset.taskName;
+            taskName = button.dataset.taskName;
             
             editTaskInput.value = taskName;
             
@@ -37,6 +41,12 @@ async function updateTask(event) {
     event.preventDefault();
 
     const newTaskName = editTaskInput.value;
+
+    if (newTaskName === taskName) {
+        taskMessageEdit.className = "task-message error";
+        taskMessageEdit.textContent = "Não houve alteração na tarefa!"
+        return;
+    }
 
     const token = localStorage.getItem("token");
 
@@ -58,6 +68,8 @@ async function updateTask(event) {
     });
 
     if (response.ok) {
+        taskMessageEdit.className = "task-message success";
+        taskMessageEdit.textContent = "Tarefa editada!"
         loadTasks();
     }
     
