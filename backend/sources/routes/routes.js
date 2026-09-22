@@ -18,4 +18,6 @@ routes.put("/tasks/:id/complete", authMiddleware, TaskController.complete); // C
 
 routes.get("/tasks/:name/search", authMiddleware, TaskController.show); // Cria a rota para buscar uma tarefa.
 
+routes.put("/tasks/:id", authMiddleware, TaskController.update); // Cria a rota para editar uma tarefa.
+
 export default routes;

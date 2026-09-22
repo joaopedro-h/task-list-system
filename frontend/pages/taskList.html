@@ -11,6 +11,7 @@
     <script src="../js/loadTasks.js" defer></script>
     <script src="../js/createTask.js" defer></script>
     <script src="../js/searchTask.js" defer></script>
+    <script src="../js/editTask.js" defer></script>
     <script src="../js/logout.js" defer></script>
 
 </head>
@@ -135,6 +136,44 @@
         <section class="task-list" id="taskList">
 
         </section>
+
+        <div id="editTaskOverlay" class="overlay">
+
+            <div class="task-modal">
+
+                <h2>Editar tarefa</h2>
+
+                <form id="editTaskForm">
+
+                    <div class="form-group">
+
+                        <label for="editTask">Tarefa</label>
+
+                        <input
+                            type="text"
+                            id="editTask"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="modal-buttons">
+
+                        <button type="button" id="cancelEditTaskButton">
+                            Sair
+                        </button>
+
+                        <button type="submit">
+                            Salvar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
 
     </main>
 

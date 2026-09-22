@@ -4,7 +4,7 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
     
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
-    const API_URL = "https://task-list-system-api.onrender.com";
+    const API_URL = "http://localhost:3333";
 
     const response = await fetch(`${API_URL}/tasks`, { // Envia uma requisição ao backend para buscar todas as tarefas.
         
@@ -101,6 +101,15 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
 
                     <button
                         type="button"
+                        class="edit-button"
+                        data-task-id="${task.id}"
+                        data-task-name="${task.task}"
+                    >
+                        Editar
+                    </button>
+
+                    <button
+                        type="button"
                         class="complete-button"
                         data-task-id="${task.id}"
                     >
@@ -117,6 +126,7 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
     });
 
     completeTask(); // Adiciona a ação de conclusão aos botões das tarefas pendentes.
+    editTask();
 
 }
 

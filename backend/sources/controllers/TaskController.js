@@ -2,6 +2,7 @@ import CreateTaskService from "../services/CreateTaskService";
 import LoadTaskService from "../services/LoadTaskService";
 import CompleteTaskService from "../services/CompleteTaskService";
 import SearchTaskService from "../services/SearchTaskService";
+import EditTaskService from "../services/EditTaskService";
 
 class TaskController {
 
@@ -89,6 +90,34 @@ class TaskController {
         } catch (error) {
             
             return res.status(404).json({ // Retorna uma resposta informando que nenhuma tarefa foi encontrada durante a busca.
+                error: error.message
+            });
+
+        }
+
+    }
+
+
+    async update (req, res) {
+
+        console.log("chegou no controller");
+        
+
+        const taskId = req.params.id;
+        const taskName  = req.body.task;
+
+        try {
+            
+            const taskUpdated = await EditTaskService.execute({
+                taskId,
+                taskName
+            });
+
+            return res.json(200).json(taskUpdated);
+
+        } catch (error) {
+
+            return res.json(400).json({
                 error: error.message
             });
 
