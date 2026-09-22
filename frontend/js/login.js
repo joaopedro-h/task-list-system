@@ -15,7 +15,7 @@ async function login(event) { // Função responsável por realizar o login do u
 
     const login = document.getElementById("login").value; // Pega os valores inseridos pelo usuário no formulário.
     const password = document.getElementById("password").value;
-    const API_URL = "http://localhost:3333";
+    const API_URL = "https://task-list-system-api.onrender.com";
     
     const response = await fetch(`${API_URL}/login/user`, { // Envia os dados de login para o backend.
 

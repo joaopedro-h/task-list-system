@@ -40,7 +40,7 @@ async function updateTask(event) {
 
     const token = localStorage.getItem("token");
 
-    const API_URL = "http://localhost:3333";
+    const API_URL = "https://task-list-system-api.onrender.com";
 
     const response = await fetch(`${API_URL}/tasks/${taskId}`, {
 
