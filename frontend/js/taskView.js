@@ -1,0 +1,1 @@
+let currentView = "pending"; // Variável que armazena qual tipo de tarefa está sendo exibido atualmente.

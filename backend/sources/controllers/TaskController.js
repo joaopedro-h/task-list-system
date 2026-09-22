@@ -98,7 +98,7 @@ class TaskController {
     }
 
 
-    async update (req, res) {
+    async update (req, res) { // Método responsável por editar uma tarefa.
 
         console.log("chegou no controller");
         

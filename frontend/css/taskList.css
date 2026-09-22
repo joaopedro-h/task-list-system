@@ -116,6 +116,40 @@ body {
     background-color: #4d839d;
 }
 
+/* BOTÃO DE TAREFAS CONCLUÍDAS*/
+.completed-tasks-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.completed-tasks-button:hover {
+    background-color: #4d839d;
+}
+
+/* BOTÃO DE TAREFAS PENDENTES*/
+.pending-tasks-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pending-tasks-button:hover {
+    background-color: #4d839d;
+}
+
 .task-header-buttons {
     display: flex;
     align-items: center;

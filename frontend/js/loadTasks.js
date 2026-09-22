@@ -1,5 +1,12 @@
 const taskList = document.getElementById('taskList'); // Pega o elemento do front-end onde as tarefas serão exibidas.
 
+const pendingTasksButton = document.getElementById('pendingTasksButton');
+
+pendingTasksButton.addEventListener("click", () => {
+    currentView = "pending";
+    loadTasks();
+});
+    
 async function loadTasks() { // Função responsável por buscar e exibir as tarefas cadastradas.
     
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
@@ -17,7 +24,7 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
     });
 
     const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
-
+    
     if (response.status === 404) {
         taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
         return;
@@ -28,53 +35,20 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
         return; // Interrompe a execução caso a busca não seja realizada com sucesso.
     }
 
+    const pendingTasks = tasks.filter(task => task.status === "pending");
+
+    if (pendingTasks.length === 0) {
+        taskList.innerHTML = "<p>Nenhuma tarefa pendente.</p>";
+        return;
+    }
+
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir novamente as tarefas.
 
-    tasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
+    pendingTasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
 
         const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
 
         taskCard.classList.add("task-card");
-
-        if (task.status === "completed") { // Verifica se a tarefa está concluída para montar o card correspondente.
-
-            taskCard.innerHTML = `
-                <div class="task-content">
-
-                    <h3>${task.task}</h3>
-
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
-
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>                   
-
-                    <p class="task-status completed">
-                        Concluída ✓
-                    </p>
-
-                    <div class="completion-info">
-
-                        <p>
-                            <strong>Concluída por:</strong>
-                            ${task.completed_by}
-                        </p>
-
-                        <p>
-                            <strong>Concluída:</strong>
-                            ${task.completed_at}
-                        </p>
-
-                    </div>
-
-                </div>
-            `;
-
-        } else { // Caso a tarefa ainda esteja pendente, monta o card com a opção de conclusão.
 
             taskCard.innerHTML = `
                 <div class="task-content">
@@ -119,8 +93,6 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
                 </div>
             `;
 
-        }
-
         taskList.appendChild(taskCard); // Adiciona o card criado na lista de tarefas.
 
     });
@@ -134,6 +106,11 @@ loadTasks(); // Carrega as tarefas assim que a página é iniciada.
 
 setInterval(async () => { // Atualiza automaticamente a lista de tarefas a cada 30 segundos.
 
-    await loadTasks();
+    if (currentView === "pending") {
+        await loadTasks();
+        
+    } else {
+        await loadCompletedTasks();
+    }
 
 }, 30000);

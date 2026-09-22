@@ -7,11 +7,13 @@
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
     <link rel="stylesheet" href="../css/logout.css">
+    <script src="../js/taskView.js" defer></script>
     <script src="../js/completeTask.js" defer></script>
+    <script src="../js/editTask.js" defer></script>
+    <script src="../js/loadCompletedTasks.js" defer></script>
     <script src="../js/loadTasks.js" defer></script>
     <script src="../js/createTask.js" defer></script>
     <script src="../js/searchTask.js" defer></script>
-    <script src="../js/editTask.js" defer></script>
     <script src="../js/logout.js" defer></script>
 
 </head>
@@ -47,6 +49,14 @@
             </div>
 
             <div class="task-header-buttons">
+
+                <button type="button" id="pendingTasksButton" class="pending-tasks-button">
+                    Pendentes
+                </button>
+
+                <button type="button" id="completedTasksButton" class="completed-tasks-button">
+                    Concluídas
+                </button>
 
                 <button type="button" id="clearSearchButton" class="clear-search-button">
                     Limpar Busca
