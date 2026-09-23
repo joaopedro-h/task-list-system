@@ -27,7 +27,7 @@ async function loadCompletedTasks() {
 
     if (response.status === 404) {
 
-        taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
+        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
         return;
 
     } else if (response.status === 401){
@@ -42,7 +42,7 @@ async function loadCompletedTasks() {
     const completedTasks = tasks.filter(task => task.status === "completed");
 
     if (completedTasks.length === 0) {
-        taskList.innerHTML = "<p>Nenhuma tarefa condluída.</p>";
+        taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
         return;
     }
 
