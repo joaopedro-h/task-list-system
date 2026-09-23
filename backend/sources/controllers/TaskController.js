@@ -100,9 +100,6 @@ class TaskController {
 
     async update (req, res) { // Método responsável por editar uma tarefa.
 
-        console.log("chegou no controller");
-        
-
         const taskId = req.params.id;
         const taskName  = req.body.task;
 
@@ -124,6 +121,7 @@ class TaskController {
         }
 
     }
+
 }
 
 export default new TaskController();

@@ -43,9 +43,11 @@ async function updateTask(event) {
     const newTaskName = editTaskInput.value;
 
     if (newTaskName === taskName) {
+
         taskMessageEdit.className = "task-message error";
         taskMessageEdit.textContent = "Não houve alteração na tarefa!"
         return;
+
     }
 
     const token = localStorage.getItem("token");
@@ -70,7 +72,8 @@ async function updateTask(event) {
     if (response.ok) {
 
         taskMessageEdit.className = "task-message success";
-        taskMessageEdit.textContent = "Tarefa editada!"
+        taskMessageEdit.textContent = "Tarefa editada!";
+        editTaskForm.reset();
         await loadTasks();
 
     }else if (response.status === 401){

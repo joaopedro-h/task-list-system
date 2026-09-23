@@ -4,8 +4,6 @@ class EditTaskService {
 
     async execute ({ taskId, taskName }) {
 
-        console.log("chegou no service");
-
         const [taskUpdate] = await connection.execute(
             `UPDATE tasks
             SET task = ?
