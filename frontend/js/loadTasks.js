@@ -2,9 +2,11 @@ const taskList = document.getElementById('taskList'); // Pega o elemento do fron
 
 const pendingTasksButton = document.getElementById('pendingTasksButton');
 
-pendingTasksButton.addEventListener("click", () => {
+pendingTasksButton.addEventListener("click", async () => {
+
     currentView = "pending";
-    loadTasks();
+    await refreshCurrentView();
+    
 });
     
 async function loadTasks() { // Função responsável por buscar e exibir as tarefas cadastradas.
@@ -105,19 +107,3 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
     editTask();
 
 }
-
-loadTasks(); // Carrega as tarefas assim que a página é iniciada.
-
-setInterval(async () => { // Atualiza automaticamente a lista de tarefas a cada 30 segundos.
-
-    if (currentView === "pending") {
-
-        await loadTasks();
-        
-    } else {
-
-        await loadCompletedTasks();
-
-    }
-
-}, 30000);

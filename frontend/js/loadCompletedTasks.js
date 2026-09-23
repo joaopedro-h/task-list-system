@@ -1,8 +1,10 @@
 const completedTasksButton = document.getElementById('completedTasksButton');
 
-completedTasksButton.addEventListener("click", () => {
+completedTasksButton.addEventListener("click", async () => {
+
     currentView = "completed";
-    loadCompletedTasks();
+    await refreshCurrentView();
+
 });
 
 async function loadCompletedTasks() {
@@ -93,5 +95,3 @@ async function loadCompletedTasks() {
     });
 
 }
-
-loadCompletedTasks();
