@@ -26,13 +26,17 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
     const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
     
     if (response.status === 404) {
+
         taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
         return;
-    }
 
-    if (!response.ok) { // Verifica se ocorreu algum erro durante a busca das tarefas.
-        console.log(tasks.error);
-        return; // Interrompe a execução caso a busca não seja realizada com sucesso.
+    } else if (response.status === 401){
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
+        window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+        return;
+
     }
 
     const pendingTasks = tasks.filter(task => task.status === "pending");
@@ -107,10 +111,13 @@ loadTasks(); // Carrega as tarefas assim que a página é iniciada.
 setInterval(async () => { // Atualiza automaticamente a lista de tarefas a cada 30 segundos.
 
     if (currentView === "pending") {
+
         await loadTasks();
         
     } else {
+
         await loadCompletedTasks();
+
     }
 
 }, 30000);

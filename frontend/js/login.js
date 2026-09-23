@@ -67,6 +67,6 @@ messageButton.addEventListener("click", () => { // Fecha a mensagem exibida apó
 
     if (loginSuccess) { // Redireciona para a lista de tarefas caso o login tenha sido realizado com sucesso.
         window.location.href = "pages/taskList.html"
-    }
-
+    }  
+    
 });

@@ -24,8 +24,17 @@ async function loadCompletedTasks() {
     const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
 
     if (response.status === 404) {
+
         taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
         return;
+
+    } else if (response.status === 401){
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
+        window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+        return;
+
     }
 
     const completedTasks = tasks.filter(task => task.status === "completed");

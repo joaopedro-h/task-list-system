@@ -24,11 +24,16 @@ async function completeTask() { // Função responsável por concluir uma tarefa
 
             });
 
-            const data = await response.json(); // Converte a resposta JSON recebida do backend para um objeto JavaScript.
-
             if (response.ok) { // Verifica se a conclusão da tarefa foi realizada com sucesso.
 
                 await loadTasks(); // Carrega novamente as tarefas para atualizar a lista após a conclusão.
+
+            } else if(response.status === 401){
+
+                localStorage.removeItem("token");
+                localStorage.removeItem("userName");
+                window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+                return;
 
             }
 

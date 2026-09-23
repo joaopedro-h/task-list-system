@@ -68,9 +68,18 @@ async function updateTask(event) {
     });
 
     if (response.ok) {
+
         taskMessageEdit.className = "task-message success";
         taskMessageEdit.textContent = "Tarefa editada!"
-        loadTasks();
+        await loadTasks();
+
+    }else if (response.status === 401){
+        
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
+        window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+        return;
+
     }
     
 }

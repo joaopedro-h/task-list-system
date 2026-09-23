@@ -5,9 +5,11 @@ const searchInput = document.getElementById("researchedTask");
 searchButton.addEventListener("click", searchTask) // Executa a função de busca quando o usuário clicar no botão.
 
 searchInput.addEventListener("keydown", function(event) { // Permite realizar a busca também ao pressionar a tecla Enter.
+    
     if (event.key === "Enter") {
         searchTask();
     }
+    
 });
 
 clearSearchButton.addEventListener("click", async () => { // Limpa o campo de pesquisa e volta a exibir todas as tarefas.
@@ -46,8 +48,17 @@ async function searchTask() { // Função responsável por realizar a busca de t
     const taskFound = await response.json(); // Converte a resposta JSON recebida do backend para um objeto ou array JavaScript.
 
     if (response.status === 404) { // Verifica se ocorreu algum erro durante a busca.
+        
         searchOverlay.style.display = "flex";
         return; // Interrompe a execução caso a busca não seja realizada com sucesso.
+
+    } else if (response.status === 401){
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
+        window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+        return;
+
     }
 
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir somente as tarefas encontradas.
