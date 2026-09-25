@@ -3,6 +3,7 @@ import LoadTaskService from "../services/LoadTaskService";
 import CompleteTaskService from "../services/CompleteTaskService";
 import SearchTaskService from "../services/SearchTaskService";
 import EditTaskService from "../services/EditTaskService";
+import DeleteTaskService from "../services/DeleteTaskService";
 
 class TaskController {
 
@@ -120,6 +121,27 @@ class TaskController {
 
         }
 
+    }
+
+
+    async delete (req, res) {
+
+        try {
+            
+            await DeleteTaskService.execute();
+
+            return res.status(200).json({
+                message: "Tarefas concluídas removidas com sucesso!"
+            });
+
+        } catch (error) {
+            
+            return res.status(400).json({
+                error: error.message
+            });
+
+        }
+        
     }
 
 }

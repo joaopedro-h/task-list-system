@@ -3,6 +3,7 @@ import RegisterController from "../controllers/RegisterController";
 import LoginController from "../controllers/LoginController";
 import TaskController from "../controllers/TaskController";
 import authMiddleware from "../middlewares/authentication";
+import cronAuthMiddleware from "../middlewares/cronAuthMiddleware";
 
 const routes = new Router(); // "routes" armazena o Router onde as rotas serão criadas.
 
@@ -19,5 +20,7 @@ routes.put("/tasks/:id/complete", authMiddleware, TaskController.complete); // C
 routes.get("/tasks/:name/search", authMiddleware, TaskController.show); // Cria a rota para buscar uma tarefa.
 
 routes.put("/tasks/:id", authMiddleware, TaskController.update); // Cria a rota para editar uma tarefa.
+
+routes.delete("/tasks/completed/delete", cronAuthMiddleware, TaskController.delete);
 
 export default routes;
