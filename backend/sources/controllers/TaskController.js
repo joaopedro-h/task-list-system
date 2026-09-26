@@ -101,12 +101,12 @@ class TaskController {
 
     async update (req, res) { // Método responsável por editar uma tarefa.
 
-        const taskId = req.params.id;
-        const taskName  = req.body.task;
+        const taskId = req.params.id; // Pega o nome da ID enviado como parâmetro na rota da requisição.
+        const taskName  = req.body.task; // Pega o nome da tarefa enviado no body na requisição.
 
         try {
             
-            const taskUpdated = await EditTaskService.execute({
+            const taskUpdated = await EditTaskService.execute({ // Executa o serviço responsável por realizar a edição das tarefas. (EditTaskService.js)
                 taskId,
                 taskName
             });
@@ -115,7 +115,7 @@ class TaskController {
 
         } catch (error) {
 
-            return res.json(400).json({
+            return res.json(400).json({ // Retorna uma resposta informando que ocorreu um erro durante a edição.
                 error: error.message
             });
 
@@ -124,19 +124,19 @@ class TaskController {
     }
 
 
-    async delete (req, res) {
+    async delete (req, res) { // Método responsável por excluir as tarefas.
 
         try {
             
-            await DeleteTaskService.execute();
+            await DeleteTaskService.execute(); // Executa o serviço responsável por realizar a exclusão das tarefas. (DeleteTaskService.js).
 
-            return res.status(200).json({
+            return res.status(200).json({ // Retorna uma resposta informando que as tarefas foram excluídas com sucesso.
                 message: "Tarefas concluídas removidas com sucesso!"
             });
 
         } catch (error) {
             
-            return res.status(400).json({
+            return res.status(400).json({ // Retorna uma resposta informando que ocorreu um erro durante a exclusão.
                 error: error.message
             });
 
