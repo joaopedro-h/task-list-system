@@ -2,9 +2,9 @@ import connection from "../database/connection";
 
 class LoadTaskService {
 
-    async execute() {     
+    async execute() { // Método responsável por buscar no banco de dados as tarefas cadastradas.
 
-        const [resultTasks] = await connection.execute(
+        const [resultTasks] = await connection.execute( // Executa a consulta ao banco de dados.
             `SELECT
                 tasks.id,
                 tasks.task,
@@ -26,11 +26,11 @@ class LoadTaskService {
                 tasks.created_at DESC;`
         );
         
-        if (resultTasks.length === 0) {
+        if (resultTasks.length === 0) { // Retorna uma mensagem de erro informando que não tme nenhuma tarefa cadastrada.
             throw new Error("Nenhuma tarefa encontrada!");
         }
 
-        return resultTasks;
+        return resultTasks; // Retorna as tarefas encontradas.
 
     }
 
