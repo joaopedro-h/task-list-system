@@ -101,21 +101,23 @@ class TaskController {
 
     async update (req, res) { // Método responsável por editar uma tarefa.
 
+        const userId = req.userId;
         const taskId = req.params.id; // Pega o nome da ID enviado como parâmetro na rota da requisição.
         const taskName  = req.body.task; // Pega o nome da tarefa enviado no body na requisição.
 
         try {
             
             const taskUpdated = await EditTaskService.execute({ // Executa o serviço responsável por realizar a edição das tarefas. (EditTaskService.js)
+                userId,
                 taskId,
                 taskName
             });
 
-            return res.json(200).json(taskUpdated);
+            return res.status(200).json(taskUpdated);
 
         } catch (error) {
 
-            return res.json(400).json({ // Retorna uma resposta informando que ocorreu um erro durante a edição.
+            return res.status(400).json({ // Retorna uma resposta informando que ocorreu um erro durante a edição.
                 error: error.message
             });
 

@@ -333,7 +333,7 @@ body {
 /* MODAL */
 .task-modal {
     width: 90%;
-    max-width: 450px;
+    max-width: 500px;
     padding: 30px;
     background-color: white;
     border-radius: 15px;

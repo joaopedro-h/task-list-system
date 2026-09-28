@@ -69,12 +69,21 @@ async function updateTask(event) { // Função responsável por enviar a atualiz
 
     });
 
+    const data = await response.json();
+
     if (response.ok) { // Verifica se a tarefa foi atualizada com sucesso.
 
         taskMessageEdit.className = "task-message success";
         taskMessageEdit.textContent = "Tarefa editada!";
         editTaskForm.reset(); // Limpa o campo do formulário após a edição.
         await loadTasks(); // Carrega novamente as tarefas para atualizar a lista.
+    
+    }else if(response.status === 400){
+
+        taskMessageEdit.className = "task-message error";
+        taskMessageEdit.textContent = data.error;
+        editTaskForm.reset(); 
+        await loadTasks(); 
 
     }else if (response.status === 401){
 
