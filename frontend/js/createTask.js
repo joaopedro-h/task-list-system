@@ -75,9 +75,8 @@ async function createTask(event) { // Função responsável por realizar a cria�
 
     }else if (response.status === 401){ // Verifica se o usuário não possui mais uma autenticação válida.
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("userName");
-        window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+        sessionExpired(); // Apaga o token e o nome de usuário salvos no navegador, remove a autenticação do usuário e retorna para a tela de login.
+        return;
 
     }else{
 

@@ -78,9 +78,7 @@ async function updateTask(event) { // Função responsável por enviar a atualiz
 
     }else if (response.status === 401){
 
-        localStorage.removeItem("token"); // Apaga o token salvo no navegador para remover a autenticação do usuário.
-        localStorage.removeItem("userName"); // Apaga também o nome do usuário que estava salvo no navegador.
-        window.location.href = "../login.html"; // Remove a autenticação e redireciona o usuário para o login.
+        sessionExpired(); // Apaga o token e o nome de usuário salvos no navegador, remove a autenticação do usuário e retorna para a tela de login.
         return;
 
     }

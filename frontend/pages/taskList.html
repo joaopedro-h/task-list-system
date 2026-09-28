@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
     <link rel="stylesheet" href="../css/logout.css">
+    <script src="../js/session.js" defer></script>
     <script src="../js/completeTask.js" defer></script>
     <script src="../js/editTask.js" defer></script>
     <script src="../js/loadTasks.js" defer></script>
@@ -187,6 +188,20 @@
             </div>
 
         </div>
+
+        <div id="sessionOverlay" class="overlay">
+
+            <div class="message error">               
+
+                <p id="sessionMessage">Sessão expirada, faça o login novamente.</p>
+
+                <button id="sessionMessageButton" type="button">
+                    Fechar
+                </button>
+
+            </div>
+
+        </div> 
 
     </main>
 
