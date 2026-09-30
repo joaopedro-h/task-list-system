@@ -1,16 +1,16 @@
 const sessionOverlay = document.getElementById('sessionOverlay');
 const sessionMessageButton = document.getElementById('sessionMessageButton');
 
-function sessionExpired() {
+function sessionExpired() { // Função que vai exibir o overlay informando sobre a sessão expirada.
     
     sessionOverlay.style.display = "flex";
 
 }
 
-sessionMessageButton.addEventListener("click", () => {
+sessionMessageButton.addEventListener("click", () => { // Adiciona evento de click ao botão.
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("userName");
-    window.location.href = "../index.html"; 
+    localStorage.removeItem("token"); // Remove o token do usuário.
+    localStorage.removeItem("userName"); // Remove o userName do usuário.
+    window.location.href = "../index.html"; // Retorna o usuário para a tela de login.
 
 });
