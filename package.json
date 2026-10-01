@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
-    "sucrase": "^3.35.1"
+    "sucrase": "^3.35.1",
+    "typescript": "^7.0.2"
   },
   "scripts": {
     "dev": "nodemon backend/sources/server.js",
