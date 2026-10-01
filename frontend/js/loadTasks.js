@@ -88,6 +88,14 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
 
                     <button
                         type="button"
+                        class="progress-button"
+                        data-task-id="${task.id}"
+                    >
+                        Andamento
+                    </button>
+
+                    <button
+                        type="button"
                         class="complete-button"
                         data-task-id="${task.id}"
                     >

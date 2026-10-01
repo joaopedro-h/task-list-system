@@ -55,7 +55,7 @@ body {
 /* MENU PRINCIPAL*/
 .task-container {
     width: 90%;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 50px auto;
     padding: 35px;
     background-color: white;
@@ -150,6 +150,23 @@ body {
     background-color: #4d839d;
 }
 
+/* BOTÃO DE TAREFAS EM ANDAMENTO*/
+.progress-tasks-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.progress-tasks-button:hover {
+    background-color: #4d839d;
+}
+
 .task-header-buttons {
     display: flex;
     align-items: center;
@@ -240,6 +257,11 @@ body {
     color: #4d839d;
 }
 
+.progress {
+    background-color: rgba(255, 160, 36, 0.658);
+    color: #4d839d;
+}
+
 .task-buttons {
     display: flex;
     align-items: center;
@@ -264,6 +286,7 @@ body {
     background-color: #4d839d;
 }
 
+/* BOTÃO EDITAR TAREFA */
 .edit-button {
     padding: 10px 18px;
     border: none;
@@ -277,6 +300,23 @@ body {
 }
 
 .edit-button:hover {
+    background-color: #4d839d;
+}
+
+/* BOTÃO INICIAR TAREFA */
+.progress-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.progress-button:hover {
     background-color: #4d839d;
 }
 
