@@ -4,6 +4,7 @@ import CompleteTaskService from "../services/CompleteTaskService";
 import SearchTaskService from "../services/SearchTaskService";
 import EditTaskService from "../services/EditTaskService";
 import DeleteTaskService from "../services/DeleteTaskService";
+import InProgressTaskService from "../services/InProgressTaskService";
 
 class TaskController {
 
@@ -144,6 +145,31 @@ class TaskController {
 
         }
         
+    }
+
+
+    async progress (req, res) {
+
+        const taskId = req.params.id;
+        const userId = req.userId;
+
+        try {
+            
+            const taskInProgress = await InProgressTaskService.execute({ 
+                taskId,
+                userId
+            });
+
+            return res.status(200).json(taskInProgress); 
+
+        } catch (error) {
+
+            return res.status(400).json({  
+                error: error.message
+            });
+
+        }
+
     }
 
 }

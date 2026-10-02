@@ -6,6 +6,10 @@ async function refreshCurrentView() {
 
         await loadTasks();
 
+    } else if (currentView === "in_progress") {
+
+        await loadInProgressTasks();          
+
     } else if (currentView === "completed") {
 
         await loadCompletedTasks();

@@ -109,6 +109,7 @@ async function loadTasks() { // Função responsável por buscar e exibir as tar
 
     });
 
+    inProgressTask();
     completeTask(); // Adiciona a ação de conclusão aos botões das tarefas pendentes.
     editTask();
 
