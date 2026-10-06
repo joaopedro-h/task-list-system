@@ -5,7 +5,7 @@
     "rootDir": "./frontend/ts",
     "outDir": "./frontend/js",
     "strict": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "skipLibCheck": true
   },
   "include": [
