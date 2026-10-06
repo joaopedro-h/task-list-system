@@ -26,7 +26,7 @@ async function completeTask() { // Função responsável por concluir uma tarefa
 
             if (response.ok) { // Verifica se a conclusão da tarefa foi realizada com sucesso.
 
-                await loadTasks(); // Carrega novamente as tarefas para atualizar a lista após a conclusão.
+                await refreshCurrentView(); // Carrega novamente as tarefas para atualizar a lista após a conclusão.
 
             } else if(response.status === 401){
 

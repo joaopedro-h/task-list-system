@@ -13,7 +13,7 @@ function inProgressTask() {
                 }
             });
             if (response.ok) {
-                await loadTasks();
+                await refreshCurrentView();
             }
             else if (response.status === 401) {
                 sessionExpired();

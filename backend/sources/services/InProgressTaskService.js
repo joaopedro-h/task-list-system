@@ -8,8 +8,8 @@ class InProgressTaskService {
             `UPDATE tasks
             SET 
                 status = 'in_progress',
-                completed_by = ?,
-                completed_at = CURRENT_TIMESTAMP
+                started_by = ?,
+                started_at = CURRENT_TIMESTAMP
             WHERE id = ?`, [userId, taskId]                    
         );
 
@@ -18,11 +18,12 @@ class InProgressTaskService {
                 tasks.id,
                 tasks.task,
                 tasks.status,
-                DATE_FORMAT(tasks.completed_at, '%d/%m/%Y - %H:%i') AS completed_at,
-                users.name AS completed_by
+                DATE_FORMAT(
+                CONVERT_TZ(tasks.started_at, '+00:00', '-03:00'),'%d/%m/%Y - %H:%i') AS started_at,
+                users.name AS started_by
             FROM tasks
             JOIN users
-            ON tasks.completed_by = users.id
+            ON tasks.started_by = users.id
             WHERE tasks.id = ?;`, [taskId]
 
         );

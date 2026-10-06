@@ -2,7 +2,6 @@
 const inProgressTasksButton = document.getElementById('inProgressTasksButton');
 if (inProgressTasksButton) {
     inProgressTasksButton.addEventListener("click", async () => {
-        console.log("Cliquei em Em andamento");
         currentView = "in_progress";
         await refreshCurrentView();
     });
@@ -53,9 +52,23 @@ async function loadInProgressTasks() {
                         Em andamento
                     </p>
 
+                    <div class="completion-info">
+
+                            <p>
+                                <strong>Iniciado por:</strong>
+                                ${task.started_by}
+                            </p>
+
+                            <p>
+                                <strong>Iniciado:</strong>
+                                ${task.started_at}
+                            </p>
+
                     </div>
 
-                        <div class="task-buttons">
+                </div>
+
+                <div class="task-buttons">
 
                         <button
                             type="button"
@@ -65,7 +78,8 @@ async function loadInProgressTasks() {
                             Concluir ✓
                         </button>
 
-                    </div>
+                </div>
+
             `;
         taskList.appendChild(taskCard);
     });
