@@ -1,9 +1,9 @@
 const loginForm = document.getElementById("loginForm") as HTMLFormElement; // Pega as informações necessárias do front-end para realizar o login.
-const overlay = document.getElementById("overlay") as HTMLElement; // Pega o overlay utilizado para exibir o resultado do login.
-const message = document.getElementById('message') as HTMLElement;
-const messageTitle = document.getElementById('messageTitle') as HTMLElement;
-const messageText = document.getElementById('messageText') as HTMLElement;
-const messageButton = document.getElementById("messageButton") as HTMLButtonElement;
+const loginOverlay = document.getElementById("overlay") as HTMLElement; // Pega o overlay utilizado para exibir o resultado do login.
+const loginMessage = document.getElementById('message') as HTMLElement;
+const loginMessageTitle = document.getElementById('messageTitle') as HTMLElement;
+const loginMessageText = document.getElementById('messageText') as HTMLElement;
+const loginMessageButton = document.getElementById("messageButton") as HTMLButtonElement;
 
 let loginSuccess: boolean = false; // Armazena o resultado do login para controlar o redirecionamento.
 
@@ -49,27 +49,27 @@ async function login(event: SubmitEvent): Promise<void> { // Função responsáv
         localStorage.setItem("token", data.token); // Armazena o token e o nome do usuário no navegador.
         localStorage.setItem("userName", data.name); // Armazena o nome do usuário no navegador para usar depois o login.
 
-        message.className = "message success";
-        messageTitle.textContent = "Sucesso!";
-        messageText.textContent = "Login realizado com sucesso!";
+        loginMessage.className = "message success";
+        loginMessageTitle.textContent = "Sucesso!";
+        loginMessageText.textContent = "Login realizado com sucesso!";
 
     }else {
 
         loginSuccess = false;
 
-        message.className = "message error";
-        messageTitle.textContent = "Erro!"
-        messageText.textContent = data.error;
+        loginMessage.className = "message error";
+        loginMessageTitle.textContent = "Erro!"
+        loginMessageText.textContent = data.error;
 
     }
 
-    overlay.style.display = "flex"; // Exibe a mensagem de sucesso ou erro para o usuário.
+    loginOverlay.style.display = "flex"; // Exibe a mensagem de sucesso ou erro para o usuário.
 
 }
 
-messageButton.addEventListener("click", () => { // Fecha a mensagem exibida após a tentativa de login.
+loginMessageButton.addEventListener("click", () => { // Fecha a mensagem exibida após a tentativa de login.
 
-    overlay.style.display = "none";
+    loginOverlay.style.display = "none";
 
     if (loginSuccess) { // Redireciona para a lista de tarefas caso o login tenha sido realizado com sucesso.
         window.location.href = "pages/taskList.html"
