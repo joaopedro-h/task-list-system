@@ -22,4 +22,3 @@ function inProgressTask() {
         });
     });
 }
-//# sourceMappingURL=inProgressTask.js.map

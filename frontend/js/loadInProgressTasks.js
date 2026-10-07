@@ -85,4 +85,3 @@ async function loadInProgressTasks() {
     });
     completeTask();
 }
-//# sourceMappingURL=loadInProgressTasks.js.map
