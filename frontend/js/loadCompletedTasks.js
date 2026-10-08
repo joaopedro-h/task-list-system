@@ -1,58 +1,37 @@
+"use strict";
 const completedTasksButton = document.getElementById('completedTasksButton');
-
 completedTasksButton.addEventListener("click", async () => {
-
     currentView = "completed";
     await refreshCurrentView();
-
 });
-
 async function loadCompletedTasks() {
-    
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
-
     const API_URL = "https://task-list-system-api.onrender.com";
-
-    const response = await fetch(`${API_URL}/tasks`, { // Envia uma requisição ao backend para buscar todas as tarefas.
-        
+    const response = await fetch(`${API_URL}/tasks`, {
         method: "GET",
-
         headers: {
             "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
         }
-
     });
-
     const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
-
     if (response.status === 404) {
-
         taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
         return;
-
-    } else if (response.status === 401){
-
+    }
+    else if (response.status === 401) {
         sessionExpired(); // Apaga o token e o nome de usuário salvos no navegador, remove a autenticação do usuário e retorna para a tela de login.
         return;
-
     }
-
     const completedTasks = tasks.filter(task => task.status === "completed");
-
     if (completedTasks.length === 0) {
         taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
         return;
     }
-
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir novamente as tarefas.
-
-    completedTasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
-
+    completedTasks.forEach(task => {
         const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
-
         taskCard.classList.add("task-card");
-
-            taskCard.innerHTML = `
+        taskCard.innerHTML = `
                 <div class="task-content">
 
                     <h3>${task.task}</h3>
@@ -87,9 +66,6 @@ async function loadCompletedTasks() {
 
                 </div>
             `;
-
         taskList.appendChild(taskCard); // Adiciona o card criado na lista de tarefas.
-
     });
-
 }

@@ -1,11 +1,9 @@
 "use strict";
 const inProgressTasksButton = document.getElementById('inProgressTasksButton');
-if (inProgressTasksButton) {
-    inProgressTasksButton.addEventListener("click", async () => {
-        currentView = "in_progress";
-        await refreshCurrentView();
-    });
-}
+inProgressTasksButton.addEventListener("click", async () => {
+    currentView = "in_progress";
+    await refreshCurrentView();
+});
 async function loadInProgressTasks() {
     const token = localStorage.getItem("token");
     const API_URL = "https://task-list-system-api.onrender.com";
