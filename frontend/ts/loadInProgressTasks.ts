@@ -1,15 +1,11 @@
-const inProgressTasksButton = document.getElementById('inProgressTasksButton');
+const inProgressTasksButton = document.getElementById('inProgressTasksButton') as HTMLButtonElement;
 
-if (inProgressTasksButton) {
+inProgressTasksButton.addEventListener("click", async () => {
 
-    inProgressTasksButton.addEventListener("click", async () => {
+    currentView = "in_progress";
+    await refreshCurrentView();
 
-        currentView = "in_progress";
-        await refreshCurrentView();
-
-    });
-
-}
+});
 
 async function loadInProgressTasks(): Promise<void> {
     

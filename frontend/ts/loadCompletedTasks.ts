@@ -1,15 +1,13 @@
-const taskList = document.getElementById('taskList') as HTMLElement; // Pega o elemento do front-end onde as tarefas serão exibidas.
+const completedTasksButton = document.getElementById('completedTasksButton') as HTMLButtonElement;
 
-const pendingTasksButton = document.getElementById('pendingTasksButton') as HTMLButtonElement;
+completedTasksButton.addEventListener("click", async () => {
 
-pendingTasksButton.addEventListener("click", async () => {
-
-    currentView = "pending";
+    currentView = "completed";
     await refreshCurrentView();
-    
+
 });
-    
-async function loadTasks(): Promise<void> { // Função responsável por buscar e exibir as tarefas cadastradas.
+
+async function loadCompletedTasks(): Promise<void> {
     
     const token: string | null = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
@@ -38,9 +36,9 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
     }
 
     const tasks: Task[] = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
-    
+
     if (response.status === 404) {
-        
+
         taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
         return;
 
@@ -51,16 +49,16 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
 
     }
 
-    const pendingTasks = tasks.filter(task => task.status === "pending");
+    const completedTasks = tasks.filter(task => task.status === "completed");
 
-    if (pendingTasks.length === 0) {
-        taskList.innerHTML = "<p>Nenhuma tarefa pendente.</p>";
+    if (completedTasks.length === 0) {
+        taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
         return;
     }
 
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir novamente as tarefas.
 
-    pendingTasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
+    completedTasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
 
         const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
 
@@ -79,40 +77,25 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
                     <p>
                         <strong>Criada:</strong>
                         ${task.created_at}
+                    </p>                   
+
+                    <p class="task-status completed">
+                        Concluída ✓
                     </p>
 
-                    <p class="task-status pending">
-                        Pendente
-                    </p>
+                    <div class="completion-info">
 
-                </div>
+                        <p>
+                            <strong>Concluída por:</strong>
+                            ${task.completed_by}
+                        </p>
 
-                <div class="task-buttons">
+                        <p>
+                            <strong>Concluída:</strong>
+                            ${task.completed_at}
+                        </p>
 
-                    <button
-                        type="button"
-                        class="edit-button"
-                        data-task-id="${task.id}"
-                        data-task-name="${task.task}"
-                    >
-                        Editar
-                    </button>
-
-                    <button
-                        type="button"
-                        class="progress-button"
-                        data-task-id="${task.id}"
-                    >
-                        Andamento
-                    </button>
-
-                    <button
-                        type="button"
-                        class="complete-button"
-                        data-task-id="${task.id}"
-                    >
-                        Concluir ✓
-                    </button>
+                    </div>
 
                 </div>
             `;
@@ -120,9 +103,5 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
         taskList.appendChild(taskCard); // Adiciona o card criado na lista de tarefas.
 
     });
-
-    inProgressTask();
-    completeTask(); // Adiciona a ação de conclusão aos botões das tarefas pendentes.
-    editTask();
 
 }
