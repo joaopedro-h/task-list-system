@@ -1,38 +1,72 @@
-"use strict";
-const taskList = document.getElementById('taskList'); // Pega o elemento do front-end onde as tarefas serão exibidas.
-const pendingTasksButton = document.getElementById('pendingTasksButton');
+const taskList = document.getElementById('taskList') as HTMLElement; // Pega o elemento do front-end onde as tarefas serão exibidas.
+
+const pendingTasksButton = document.getElementById('pendingTasksButton') as HTMLButtonElement;
+
 pendingTasksButton.addEventListener("click", async () => {
+
     currentView = "pending";
     await refreshCurrentView();
+    
 });
-async function loadTasks() {
-    const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
-    const API_URL = "https://task-list-system-api.onrender.com";
-    const response = await fetch(`${API_URL}/tasks`, {
+
+interface Task {
+    id: number;
+    task: string;
+    status: string;
+    user_name: string;
+    created_at: string;
+    started_by: string | null;
+    started_at: string | null;
+    completed_by: string | null;
+    completed_at: string | null;
+}
+    
+async function loadTasks(): Promise<void> { // Função responsável por buscar e exibir as tarefas cadastradas.
+    
+    const token: string | null = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
+
+    const API_URL: string = "https://task-list-system-api.onrender.com";
+
+    const response: Response = await fetch(`${API_URL}/tasks`, { // Envia uma requisição ao backend para buscar todas as tarefas.
+        
         method: "GET",
+
         headers: {
             "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
         }
+
     });
-    const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
+
+    const tasks: Task[] = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
+    
     if (response.status === 404) {
+        
         taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
         return;
-    }
-    else if (response.status === 401) {
+
+    } else if (response.status === 401){
+
         sessionExpired(); // Apaga o token e o nome de usuário salvos no navegador, remove a autenticação do usuário e retorna para a tela de login.
         return;
+
     }
-    const pendingTasks = tasks.filter(task => task.status === "pending");
+
+    const pendingTasks: Task[] = tasks.filter(task => task.status === "pending");
+
     if (pendingTasks.length === 0) {
         taskList.innerHTML = "<p>Nenhuma tarefa pendente.</p>";
         return;
     }
+
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir novamente as tarefas.
-    pendingTasks.forEach(task => {
-        const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
+
+    pendingTasks.forEach(task => { // Percorre todas as tarefas retornadas pelo backend.
+
+        const taskCard: HTMLElement = document.createElement("article"); // Cria um novo card para cada tarefa.
+
         taskCard.classList.add("task-card");
-        taskCard.innerHTML = `
+
+            taskCard.innerHTML = `
                 <div class="task-content">
 
                     <h3>${task.task}</h3>
@@ -82,9 +116,13 @@ async function loadTasks() {
 
                 </div>
             `;
+
         taskList.appendChild(taskCard); // Adiciona o card criado na lista de tarefas.
+
     });
+
     inProgressTask();
     completeTask(); // Adiciona a ação de conclusão aos botões das tarefas pendentes.
     editTask();
+
 }
