@@ -1,0 +1,23 @@
+let currentView: "pending" | "in_progress" | "completed" = "pending"; // Variável que armazena qual tipo de tarefa está sendo exibido atualmente.
+
+async function refreshCurrentView(): Promise<void> {
+
+    if (currentView === "pending") {
+
+        await loadTasks();
+
+    } else if (currentView === "in_progress") {
+
+        await loadInProgressTasks();          
+
+    } else if (currentView === "completed") {
+
+        await loadCompletedTasks();
+
+    }
+
+}
+
+refreshCurrentView();
+
+setInterval(refreshCurrentView, 30000); // Atualiza a visualização atual a cada 30 segundos.
