@@ -28,7 +28,7 @@ function inProgressTask(): void {
 
             } else if(response.status === 401){
 
-                sessionExpired(); 
+                sessionExpired(); // Exibe o aviso informando que a sessão do usuário expirou.
                 return;
 
             }            

@@ -34,7 +34,7 @@ async function searchTask() {
         return; // Interrompe a execução caso a busca não seja realizada com sucesso.
     }
     else if (response.status === 401) {
-        sessionExpired(); // Apaga o token e o nome de usuário salvos no navegador, remove a autenticação do usuário e retorna para a tela de login.
+        sessionExpired(); // Exibe o aviso informando que a sessão do usuário expirou.
         return;
     }
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir somente as tarefas encontradas.
