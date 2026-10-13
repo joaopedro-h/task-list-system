@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tarefas</title>
@@ -20,7 +20,7 @@
     <script src="../js/createTask.js" defer></script>
     <script src="../js/searchTask.js" defer></script>
     <script src="../js/logout.js" defer></script>
-    
+
 </head>
 
 <body>
@@ -32,6 +32,7 @@
         </div>
 
         <div class="user-info">
+
             <span id="userName"></span>
 
             <button id="userMenuButton" type="button">▼</button>
@@ -46,81 +47,30 @@
 
     <main class="task-container">
 
+        <!-- Cabeçalho e criação de tarefas -->
+
         <section class="task-header">
 
-            <div>
+            <div class="task-header-info">
                 <h2>Tarefas do setor</h2>
                 <p>Acompanhe e conclua as tarefas pendentes.</p>
             </div>
 
-            <div class="task-header-buttons">
-
-                <button type="button" id="pendingTasksButton" class="pending-tasks-button">
-                    Pendentes
-                </button>
-
-                <button type="button" id="inProgressTasksButton" class="progress-tasks-button">
-                    Andamento
-                </button>
-
-                <button type="button" id="completedTasksButton" class="completed-tasks-button">
-                    Concluídas
-                </button>
-
-                <button type="button" id="clearSearchButton" class="clear-search-button">
-                    Limpar busca
-                </button>
-
-                <button type="button" id="newTaskButton" class="new-task-button">
-                    + Nova tarefa
-                </button>
-
-            </div>
-
-            <div id="taskOverlay" class="overlay">
-
-                <div class="task-modal">
-
-                    <h2>Nova tarefa</h2>
-
-                    <form id="taskForm">
-
-                        <div class="form-group">
-
-                            <label for="taskTitle">Tarefa</label>
-
-                            <input
-                                type="text"
-                                id="task"
-                                placeholder="Digite a tarefa"
-                                required
-                            >
-
-                        </div>
-
-                        <div class="modal-buttons">      
-
-                            <p id="taskMessage" class="task-message"></p>
-
-                            <button type="button" id="cancelTaskButton">
-                                Sair
-                            </button>
-
-                            <button id="createTaskButton" type="submit">
-                                Criar tarefa
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
+            <button
+                type="button"
+                id="newTaskButton"
+                class="new-task-button"
+            >
+                + Nova tarefa
+            </button>
 
         </section>
 
+        <!-- Pesquisa de tarefas -->
+
         <section class="task-actions">
+
+            <h3 class="section-title">Pesquisa</h3>
 
             <div class="search-box">
 
@@ -134,13 +84,109 @@
                     Pesquisar
                 </button>
 
+                <button
+                    type="button"
+                    id="clearSearchButton"
+                    class="clear-search-button"
+                >
+                    Limpar busca
+                </button>
+
             </div>
 
         </section>
 
+        <!-- Navegação entre as visualizações -->
+
+        <section class="task-navigation">
+
+            <h3 class="section-title">Visualização das tarefas</h3>
+
+            <div class="task-view-buttons">
+
+                <button
+                    type="button"
+                    id="pendingTasksButton"
+                    class="pending-tasks-button"
+                >
+                    Pendentes
+                </button>
+
+                <button
+                    type="button"
+                    id="inProgressTasksButton"
+                    class="progress-tasks-button"
+                >
+                    Em andamento
+                </button>
+
+                <button
+                    type="button"
+                    id="completedTasksButton"
+                    class="completed-tasks-button"
+                >
+                    Concluídas
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Lista de tarefas -->
+
+        <section class="task-list" id="taskList">
+
+        </section>
+
+        <!-- Overlay de criação -->
+
+        <div id="taskOverlay" class="overlay">
+
+            <div class="task-modal">
+
+                <h2>Nova tarefa</h2>
+
+                <form id="taskForm">
+
+                    <div class="form-group">
+
+                        <label for="task">Tarefa</label>
+
+                        <input
+                            type="text"
+                            id="task"
+                            placeholder="Digite a tarefa"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="modal-buttons">
+
+                        <p id="taskMessage" class="task-message"></p>
+
+                        <button type="button" id="cancelTaskButton">
+                            Sair
+                        </button>
+
+                        <button id="createTaskButton" type="submit">
+                            Criar tarefa
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Overlay de pesquisa sem resultados -->
+
         <div id="searchOverlay" class="overlay">
 
-            <div class="message error">               
+            <div class="message error">
 
                 <p id="searchMessage">Nenhuma tarefa encontrada.</p>
 
@@ -150,11 +196,9 @@
 
             </div>
 
-        </div>        
+        </div>
 
-        <section class="task-list" id="taskList">
-
-        </section>
+        <!-- Overlay de edição -->
 
         <div id="editTaskOverlay" class="overlay">
 
@@ -197,11 +241,15 @@
 
         </div>
 
+        <!-- Overlay de sessão expirada -->
+
         <div id="sessionOverlay" class="overlay">
 
-            <div class="message error">               
+            <div class="message error">
 
-                <p id="sessionMessage">Sessão expirada, faça o login novamente.</p>
+                <p id="sessionMessage">
+                    Sessão expirada, faça o login novamente.
+                </p>
 
                 <button id="sessionMessageButton" type="button">
                     Fechar
@@ -209,10 +257,9 @@
 
             </div>
 
-        </div> 
+        </div>
 
     </main>
 
 </body>
-
 </html>

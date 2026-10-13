@@ -1,3 +1,5 @@
+/* CONFIGURAÇÕES GERAIS */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,26 +9,20 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
-
-    background: linear-gradient(
-        135deg,
-        #0a1b1e,
-        #344856,
-        #4d839d
-    );
-
+    background: linear-gradient(135deg, #0a1b1e, #344856, #4d839d);
     color: #0a1b1e;
 }
 
+/* CABEÇALHO DO SISTEMA */
 
-/* HEADER */
 .header {
     width: 100%;
-    height: 75px;
+    min-height: 75px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
+    gap: 20px;
+    padding: 15px 50px;
     background-color: #0a1b1e;
     color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -36,14 +32,12 @@ body {
     font-size: 26px;
 }
 
-/*INFORMAÇÕES DO USUÁRIO*/
 .user-info {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/*BOTÃO DE PERFIL*/
 .user-info button {
     border: none;
     background: transparent;
@@ -51,45 +45,51 @@ body {
     cursor: pointer;
 }
 
+/* CONTAINER PRINCIPAL */
 
-/* MENU PRINCIPAL*/
 .task-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 35px;
+    width: 92%;
+    max-width: 1300px;
+    margin: 35px auto;
+    padding: 32px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
 }
 
+/* CABEÇALHO E CRIAÇÃO */
 
-/* CABEÇALHO DAS TAREFAS */
 .task-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    gap: 20px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #e3e8eb;
 }
 
-.task-header h2 {
-    margin-bottom: 5px;
+.task-header-info h2 {
+    margin-bottom: 6px;
     color: #0a1b1e;
+    font-size: 24px;
 }
 
-.task-header p {
+.task-header-info p {
     color: #344856;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
+/* BOTÃO DE NOVA TAREFA */
 
-/* BOTÃO DE CRIAR TAREFA */
 .new-task-button {
-    padding: 12px 20px;
+    flex-shrink: 0;
+    padding: 12px 18px;
     border: none;
     border-radius: 8px;
     background-color: #55a39e;
     color: white;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
@@ -99,92 +99,62 @@ body {
     background-color: #4d839d;
 }
 
-/* BOTÃO DE LIMPAR BUSCA */
-.clear-search-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #55a39e;
-    color: white;
-    font-size: 15px;
+/* VISUALIZAÇÃO DAS TAREFAS */
+
+.task-navigation {
+    padding: 26px 0;
+    border-bottom: 1px solid #e3e8eb;
+}
+
+.section-title {
+    margin-bottom: 12px;
+    color: #344856;
+    font-size: 13px;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    text-transform: uppercase;
 }
 
-.clear-search-button:hover {
-    background-color: #4d839d;
-}
+/* BOTÕES DE VISUALIZAÇÃO */
 
-/* BOTÃO DE TAREFAS CONCLUÍDAS*/
-.completed-tasks-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #55a39e;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.completed-tasks-button:hover {
-    background-color: #4d839d;
-}
-
-/* BOTÃO DE TAREFAS PENDENTES*/
-.pending-tasks-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #55a39e;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.pending-tasks-button:hover {
-    background-color: #4d839d;
-}
-
-/* BOTÃO DE TAREFAS EM ANDAMENTO*/
-.progress-tasks-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #55a39e;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.progress-tasks-button:hover {
-    background-color: #4d839d;
-}
-
-.task-header-buttons {
+.task-view-buttons {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-/* BARRA DE PESQUISA */
+.task-view-buttons button {
+    padding: 11px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #55a39e;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.task-view-buttons button:hover {
+    background-color: #4d839d;
+}
+
+/* PESQUISA */
+
 .task-actions {
-    margin-bottom: 30px;
+    padding: 26px 0;
+    border-bottom: 1px solid #e3e8eb;
 }
 
 .search-box {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 10px;
 }
 
 .search-box input {
-    flex: 1;
+    width: 100%;
+    min-width: 0;
     padding: 12px 15px;
     border: 1px solid #4d839d;
     border-radius: 8px;
@@ -194,50 +164,93 @@ body {
 
 .search-box input:focus {
     border-color: #55a39e;
+    box-shadow: 0 0 0 2px rgba(85, 163, 158, 0.15);
 }
 
 .search-box button {
-    padding: 12px 20px;
+    padding: 12px 18px;
     border: none;
     border-radius: 8px;
     background-color: #344856;
     color: white;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
+.search-box button:hover {
+    background-color: #4d839d;
+}
 
-/* LISTA DE TAREFAS*/
+/* LIMPAR BUSCA: APARECE QUANDO O CAMPO TEM TEXTO */
+
+.search-box .clear-search-button {
+    display: none;
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding: 4px 0;
+    border: none;
+    background-color: transparent;
+    color: #344856;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.search-box .clear-search-button:hover {
+    background-color: transparent;
+    color: #4d839d;
+    text-decoration: underline;
+}
+
+.search-box input:not(:placeholder-shown) ~ .clear-search-button {
+    display: block;
+}
+
+/* LISTA DE TAREFAS */
+
 .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
     width: 100%;
+    padding-top: 24px;
 }
 
+/* CARDS */
 
-/* CARD */
 .task-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
     padding: 25px;
     background-color: #ffffff;
+    border: 1px solid #e3e8eb;
     border-left: 5px solid #4d839d;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
+.task-content {
+    flex: 1;
+    min-width: 0;
+}
 
-/* CONTEÚDO DO CARD */
 .task-content h3 {
     margin-bottom: 15px;
     color: #0a1b1e;
+    overflow-wrap: anywhere;
 }
 
 .task-content p {
     margin-bottom: 8px;
     color: #344856;
+    overflow-wrap: anywhere;
 }
 
+/* STATUS DAS TAREFAS */
 
-/* STATUS DA TAREFA*/
 .task-status {
     display: inline-block;
     margin-top: 8px;
@@ -249,61 +262,31 @@ body {
 
 .pending {
     background-color: rgba(232, 236, 32, 0.644);
-    color: #4d839d;
+    color: #344856;
 }
 
 .completed {
     background-color: rgba(88, 255, 116, 0.568);
-    color: #4d839d;
+    color: #344856;
 }
 
 .progress {
     background-color: rgba(255, 159, 50, 0.863);
-    color: #4d839d;
+    color: #344856;
 }
+
+/* BOTÕES DOS CARDS */
 
 .task-buttons {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     flex-shrink: 0;
 }
 
-/* BOTÃO CONCLUIR TAREFA */
-.complete-button {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    background-color: #55a39e;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;
-}
-
-.complete-button:hover {
-    background-color: #4d839d;
-}
-
-/* BOTÃO EDITAR TAREFA */
-.edit-button {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    background-color: #55a39e;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;
-}
-
-.edit-button:hover {
-    background-color: #4d839d;
-}
-
-/* BOTÃO INICIAR TAREFA */
+.complete-button,
+.edit-button,
 .progress-button {
     padding: 10px 18px;
     border: none;
@@ -312,84 +295,49 @@ body {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s;
     white-space: nowrap;
 }
 
+.complete-button:hover,
+.edit-button:hover,
 .progress-button:hover {
     background-color: #4d839d;
 }
 
+/* OVERLAYS */
 
-/* RESPONSIVIDADE */
-@media (max-width: 700px) {
-
-    .header {
-        padding: 0 20px;
-    }
-
-    .task-container {
-        width: 95%;
-
-        padding: 20px;
-    }
-
-    .task-header {
-        flex-direction: column;
-        align-items: flex-start;
-
-        gap: 20px;
-    }
-
-    .search-box {
-        flex-direction: column;
-    }
-
-    .task-card {
-        flex-direction: column;
-        align-items: flex-start;
-
-        gap: 20px;
-    }
-
-}
-
-/* OVERLAY DO MODAL */
 .overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     display: none;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
     z-index: 1000;
 }
 
+/* MODAIS */
 
-/* MODAL */
 .task-modal {
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 520px;
     padding: 30px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
-
-/* TÍTULO DO MODAL */
 .task-modal h2 {
     margin-bottom: 25px;
     color: #0a1b1e;
     font-size: 24px;
 }
 
+/* CAMPOS DOS FORMULÁRIOS */
 
-/* CAMPO DO FORMULÁRIO */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -403,6 +351,7 @@ body {
 }
 
 .form-group input {
+    width: 100%;
     padding: 12px 15px;
     border: 1px solid #4d839d;
     border-radius: 8px;
@@ -415,34 +364,17 @@ body {
     box-shadow: 0 0 0 2px rgba(85, 163, 158, 0.2);
 }
 
+/* BOTÕES DOS MODAIS */
 
-/* BOTÕES DO MODAL */
 .modal-buttons {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+    flex-wrap: nowrap;
     gap: 10px;
 }
 
-
-/* BOTÃO DE CANCELAR */
-#cancelTaskButton {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    background-color: #344856;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#cancelTaskButton:hover {
-    background-color: #4d839d;
-}
-
-
-/* BOTÃO DE CRIAR TAREFA */
-.modal-buttons button[type="submit"] {
+.modal-buttons button {
     padding: 10px 18px;
     border: none;
     border-radius: 8px;
@@ -450,152 +382,163 @@ body {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
-.modal-buttons button[type="submit"]:hover {
+.modal-buttons button:hover {
     background-color: #4d839d;
 }
 
+.modal-buttons button[type="button"] {
+    background-color: #344856;
+}
+
+.modal-buttons button[type="button"]:hover {
+    background-color: #4d839d;
+}
+
+/* MENSAGENS DOS FORMULÁRIOS */
+
 .task-message {
     flex: 1;
-    text-align: left;
+    min-width: 0;
     margin: 0;
-    margin-top: 15px;
     font-size: 14px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .task-message.success {
-    color: #55a39e;
+    color: #34867f;
 }
 
 .task-message.error {
     color: #b33a3a;
 }
 
-#searchOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
+/* MENSAGENS DOS OVERLAYS */
 
-#searchOverlay .message {
-    width: 90%;
+.message {
+    width: 100%;
     max-width: 400px;
     padding: 30px;
-    background: white;
+    background-color: white;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-#searchOverlay .message h2 {
-    margin-bottom: 15px;
-    color: #344856;
-}
-
-#searchOverlay .message p {
+.message p {
     margin-bottom: 25px;
     color: #0a1b1e;
     font-size: 16px;
+    line-height: 1.5;
 }
 
-#searchMessageButton {
+.message button {
     padding: 10px 25px;
     border: none;
     border-radius: 8px;
-    background: #55a39e;
+    background-color: #55a39e;
     color: white;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background-color 0.2s;
 }
 
-#searchMessageButton:hover {
-    background: #4d839d;
+.message button:hover {
+    background-color: #4d839d;
 }
 
-#editTaskOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header-title h1 {
+        font-size: 21px;
+    }
+
+    .task-container {
+        width: 94%;
+        margin: 22px auto;
+        padding: 20px;
+    }
+
+    .task-header {
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .task-header-info h2 {
+        font-size: 21px;
+    }
+
+    .new-task-button {
+        padding: 11px 13px;
+        font-size: 13px;
+    }
+
+    .search-box {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .task-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .task-buttons {
+        width: 100%;
+    }
+
+    .task-buttons button {
+        flex: 1;
+    }
+
+    .task-modal {
+        padding: 22px;
+    }
+
 }
 
-#cancelEditTaskButton {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    background: #344856;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
+@media (max-width: 480px) {
 
-#cancelEditTaskButton:hover {
-    background: #4d839d;
-}
+    .task-header {
+        flex-direction: column;
+    }
 
-#sessionOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
+    .task-view-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 
-#sessionOverlay .message {
-    width: 90%;
-    max-width: 400px;
-    padding: 30px;
-    background: white;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-}
+    .task-view-buttons button {
+        width: 100%;
+    }
 
-#sessionOverlay .message p {
-    margin-bottom: 25px;
-    color: #0a1b1e;
-    font-size: 16px;
-}
+    .search-box {
+        grid-template-columns: 1fr;
+    }
 
-#sessionMessageButton {
-    padding: 10px 25px;
-    border: none;
-    border-radius: 8px;
-    background: #55a39e;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
+    .search-box .clear-search-button {
+        grid-column: auto;
+    }
 
-#sessionMessageButton:hover {
-    background: #4d839d;
+    .task-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .modal-buttons {
+        justify-content: flex-start;
+    }
+
 }
