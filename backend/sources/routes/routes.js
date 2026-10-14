@@ -2,6 +2,7 @@ import {Router} from "express";
 import RegisterController from "../controllers/RegisterController";
 import LoginController from "../controllers/LoginController";
 import TaskController from "../controllers/TaskController";
+import WeatherController from "../controllers/WeatherController";
 import authMiddleware from "../middlewares/authentication";
 import cronAuthMiddleware from "../middlewares/cronAuthMiddleware";
 
@@ -24,5 +25,7 @@ routes.get("/tasks/:name/search", authMiddleware, TaskController.show); // Cria 
 routes.put("/tasks/:id", authMiddleware, TaskController.update); // Cria a rota para editar uma tarefa.
 
 routes.delete("/tasks/completed/delete", cronAuthMiddleware, TaskController.delete); // Cria a rota para exluir as tarefas automáticamente pelo Cron-Job.
+
+routes.get("/weather", authMiddleware, WeatherController.show);
 
 export default routes;
