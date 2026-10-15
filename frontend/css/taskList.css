@@ -542,3 +542,117 @@ body {
     }
 
 }
+
+/* CARD DE CLIMA */
+
+.weather-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-left: auto;
+    padding: 14px 18px;
+    background-color: #f7fafb;
+    border: 1px solid #e3ecef;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(10, 27, 30, 0.06);
+}
+
+/* LOCALIZAÇÃO */
+
+.weather-location {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#weatherCity {
+    color: #0a1b1e;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#weatherRegion {
+    color: #526875;
+    font-size: 12px;
+}
+
+/* INFORMAÇÕES DO CLIMA */
+
+.weather-details {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-left: 18px;
+    border-left: 1px solid #d8e3e7;
+}
+
+#weatherTemperature {
+    color: #0a1b1e;
+    font-size: 27px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.weather-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.weather-extra p {
+    color: #344856;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+#weatherRainChance {
+    color: #4d839d;
+    font-weight: bold;
+}
+
+/* AJUSTE PARA TELAS MENORES */
+
+@media (max-width: 1000px) {
+
+    .task-header {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .weather-card {
+        order: 3;
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
+
+    .new-task-button {
+        margin-left: auto;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .weather-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .weather-details {
+        width: 100%;
+        padding-left: 0;
+        padding-top: 12px;
+        border-left: none;
+        border-top: 1px solid #d8e3e7;
+    }
+
+    #weatherTemperature {
+        font-size: 25px;
+    }
+
+    .weather-extra p {
+        white-space: normal;
+    }
+
+}

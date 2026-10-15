@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../img/tarefas-icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taskList.css">
     <link rel="stylesheet" href="../css/logout.css">
+    <script src="../js/weather.js" defer></script>
     <script src="../js/keyboard.js" defer></script>
     <script src="../js/session.js" defer></script>
     <script src="../js/completeTask.js" defer></script>
@@ -54,6 +55,29 @@
             <div class="task-header-info">
                 <h2>Tarefas do setor</h2>
                 <p>Acompanhe e conclua as tarefas pendentes.</p>
+            </div>
+
+            <div class="weather-card">
+
+                <div class="weather-location">
+                    <span id="weatherCity"></span>
+                    <span id="weatherRegion"></span>
+                </div>
+
+                <div class="weather-details">
+
+                    <span id="weatherTemperature"></span>
+
+                    <div class="weather-extra">
+                        <p id="weatherCondition">Carregando clima...</p>
+                        <p>
+                            Chance de chuva:
+                            <span id="weatherRainChance"></span>
+                        </p>
+                    </div>
+
+                </div>
+
             </div>
 
             <button
@@ -131,7 +155,6 @@
             </div>
 
         </section>
-
 
         <!-- Lista de tarefas -->
 

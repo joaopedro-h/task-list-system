@@ -26,16 +26,6 @@ class WeatherService {
 
         const weather = await response.json();
 
-        console.log({
-            cidade: weather.location.name,
-            regiao: weather.location.region,
-            pais: weather.location.country,
-            horarioLocal: weather.location.localtime,
-            ultimaAtualizacao: weather.current.last_updated,
-            temperatura: weather.current.temp_c,
-            sensacaoTermica: weather.current.feelslike_c
-        });
-
         return weather;
 
     }
