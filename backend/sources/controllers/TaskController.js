@@ -5,6 +5,7 @@ import SearchTaskService from "../services/SearchTaskService";
 import EditTaskService from "../services/EditTaskService";
 import DeleteTaskService from "../services/DeleteTaskService";
 import InProgressTaskService from "../services/InProgressTaskService";
+import ReopenTaskService from "../services/ReopenTaskService";
 
 class TaskController {
 
@@ -164,6 +165,29 @@ class TaskController {
 
         } catch (error) {
 
+            return res.status(400).json({  
+                error: error.message
+            });
+
+        }
+
+    }
+
+
+    async reopen (req, res) {
+
+        const taskId = req.params.id;
+
+        try {
+            
+            const taskReopen = await ReopenTaskService.execute({
+                taskId
+            })
+
+            return res.status(200).json(taskReopen);
+
+        } catch (error) {
+            
             return res.status(400).json({  
                 error: error.message
             });

@@ -287,7 +287,8 @@ body {
 
 .complete-button,
 .edit-button,
-.progress-button {
+.progress-button,
+.reopen-button {
     padding: 10px 18px;
     border: none;
     border-radius: 8px;
@@ -301,7 +302,8 @@ body {
 
 .complete-button:hover,
 .edit-button:hover,
-.progress-button:hover {
+.progress-button:hover,
+.reopen-button:hover {
     background-color: #4d839d;
 }
 

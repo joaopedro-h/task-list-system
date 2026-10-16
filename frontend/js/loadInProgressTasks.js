@@ -68,18 +68,27 @@ async function loadInProgressTasks() {
 
                 <div class="task-buttons">
 
-                        <button
-                            type="button"
-                            class="complete-button"
-                            data-task-id="${task.id}"
-                        >
-                            Concluir ✓
-                        </button>
+                    <button
+                        type="button"
+                        class="reopen-button"
+                        data-task-id="${task.id}"
+                    >
+                        Pendenciar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="complete-button"
+                        data-task-id="${task.id}"
+                    >
+                        Concluir ✓
+                    </button>
 
                 </div>
 
             `;
         taskList.appendChild(taskCard);
     });
+    reopenTask();
     completeTask();
 }

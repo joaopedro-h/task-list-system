@@ -20,6 +20,8 @@ routes.put("/tasks/:id/complete", authMiddleware, TaskController.complete); // C
 
 routes.put("/tasks/:id/progress", authMiddleware, TaskController.progress); // Cria a rota para dar ínicio a uma tarefa.
 
+routes.put("/tasks/:id/reopen", authMiddleware, TaskController.reopen); // Cria a rota para reabrir uma tarefa iniciada.
+
 routes.get("/tasks/:name/search", authMiddleware, TaskController.show); // Cria a rota para buscar uma tarefa.
 
 routes.put("/tasks/:id", authMiddleware, TaskController.update); // Cria a rota para editar uma tarefa.
