@@ -62,70 +62,79 @@ async function loadInProgressTasks(): Promise<void> {
 
         const taskCard = document.createElement("article"); 
 
-        taskCard.classList.add("task-card");
+        taskCard.classList.add("task-card", "task-card-progress");
 
             taskCard.innerHTML = `
-                <div class="task-content">
+            <div class="task-card-main">
+
+                <div class="task-card-heading">
 
                     <h3>${task.task}</h3>
-
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
-
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>                   
 
                     <p class="task-status progress">
                         Em andamento
                     </p>
 
-                    <div class="completion-info">
+                </div>
 
-                            <p>
-                                <strong>Iniciado por:</strong>
-                                ${task.started_by}
-                            </p>
+                <div class="task-card-details">
 
-                            <p>
-                                <strong>Iniciado:</strong>
-                                ${task.started_at}
-                            </p>
+                    <div class="task-content">
+
+                        <p>
+                            <strong>Responsável:</strong>
+                            ${task.user_name}
+                        </p>
+
+                        <p>
+                            <strong>Criada:</strong>
+                            ${task.created_at}
+                        </p>
+
+                    </div>
+
+                    <div class="task-buttons">
+
+                        <button
+                            type="button"
+                            class="reopen-button"
+                            data-task-id="${task.id}"
+                        >
+                            Pendenciar
+                        </button>
+
+                        <button
+                            type="button"
+                            class="complete-button"
+                            data-task-id="${task.id}"
+                        >
+                            Concluir ✓
+                        </button>
 
                     </div>
 
                 </div>
 
-                <div class="task-buttons">
+            </div>
 
-                    <button
-                        type="button"
-                        class="reopen-button"
-                        data-task-id="${task.id}"
-                    >
-                        Pendenciar
-                    </button>
+            <div class="completion-info">
 
-                    <button
-                        type="button"
-                        class="complete-button"
-                        data-task-id="${task.id}"
-                    >
-                        Concluir ✓
-                    </button>
+                <p>
+                    <strong>Iniciado por:</strong>
+                    ${task.started_by}
+                    <span class="completion-separator">·</span>
+                    ${task.started_at}
+                </p>
 
-                </div>
-
-            `;
+            </div>
+            
+        `;
 
         taskList.appendChild(taskCard);
 
     });
-
-    reopenTask();
+    
+    reopenTask();                                                                                                                                              
     completeTask();
 
 }

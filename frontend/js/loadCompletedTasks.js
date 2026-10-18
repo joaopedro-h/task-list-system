@@ -30,39 +30,44 @@ async function loadCompletedTasks() {
     taskList.innerHTML = ""; // Limpa a lista atual antes de exibir novamente as tarefas.
     completedTasks.forEach(task => {
         const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
-        taskCard.classList.add("task-card");
+        taskCard.classList.add("task-card", "task-card-completed");
         taskCard.innerHTML = `
-                <div class="task-content">
+                <div class="task-card-main">
 
-                    <h3>${task.task}</h3>
+                    <div class="task-card-heading">
 
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
+                        <h3>${task.task}</h3>
 
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>                   
-
-                    <p class="task-status completed">
-                        Concluída ✓
-                    </p>
-
-                    <div class="completion-info">
-
-                        <p>
-                            <strong>Concluída por:</strong>
-                            ${task.completed_by}
-                        </p>
-
-                        <p>
-                            <strong>Concluída:</strong>
-                            ${task.completed_at}
+                        <p class="task-status completed">
+                            Concluída ✓
                         </p>
 
                     </div>
+
+                    <div class="task-content">
+
+                        <p>
+                            <strong>Responsável:</strong>
+                            ${task.user_name}
+                        </p>
+
+                        <p>
+                            <strong>Criada:</strong>
+                            ${task.created_at}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="completion-info">
+
+                    <p>
+                        <strong>Concluída por:</strong>
+                        ${task.completed_by}
+                        <span class="completion-separator">·</span>
+                        ${task.completed_at}
+                    </p>
 
                 </div>
             `;

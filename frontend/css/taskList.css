@@ -486,10 +486,6 @@ body {
         font-size: 13px;
     }
 
-    .search-box {
-        grid-template-columns: minmax(0, 1fr) auto;
-    }
-
     .task-card {
         flex-direction: column;
         align-items: flex-start;
@@ -508,7 +504,6 @@ body {
     .task-modal {
         padding: 22px;
     }
-
 }
 
 @media (max-width: 480px) {
@@ -542,7 +537,6 @@ body {
     .modal-buttons {
         justify-content: flex-start;
     }
-
 }
 
 /* CARD DE CLIMA */
@@ -630,7 +624,6 @@ body {
     .new-task-button {
         margin-left: auto;
     }
-
 }
 
 @media (max-width: 480px) {
@@ -656,5 +649,218 @@ body {
     .weather-extra p {
         white-space: normal;
     }
+}
 
+/* CARD EM ANDAMENTO */
+
+.task-card-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+/* TAREFA NA ESQUERDA E STATUS NO CANTO SUPERIOR DIREITO */
+
+.task-card-progress .task-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.task-card-progress .task-card-heading h3 {
+    margin: 0;
+}
+
+.task-card-progress .task-card-heading .task-status,
+.task-card-completed .task-card-heading .task-status {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+/* INFORMAÇÕES E BOTÕES */
+
+.task-card-progress .task-card-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* HISTÓRICO DA TAREFA */
+
+.task-card-progress .completion-info {
+    width: 100%;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(52, 72, 86, 0.13);
+}
+
+.task-card-progress .completion-info p,
+.task-card-completed .completion-info p {
+    margin: 0;
+    color: #344856;
+    font-size: 16px;
+}
+
+.task-card-progress .completion-separator,
+.task-card-completed .completion-separator {
+    margin: 0 8px;
+    color: #aab7bd;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .task-card-progress .task-card-heading {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .task-card-progress .task-card-details {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .task-card-progress .task-buttons {
+        justify-content: flex-start;
+    }
+}
+
+/* CARD DE TAREFA CONCLUÍDA */
+
+.task-card-completed {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+/* TAREFA NA ESQUERDA E STATUS NA DIREITA */
+
+.task-card-completed .task-card-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+}
+
+.task-card-completed .task-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 0;
+}
+
+.task-card-completed .task-card-heading h3 {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* HISTÓRICO DE CONCLUSÃO */
+
+.task-card-completed .completion-info {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(52, 72, 86, 0.13);
+}
+
+.task-card-completed .completion-info strong {
+    color: #344856;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .task-card-completed .task-card-heading {
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* CARD DE TAREFA PENDENTE */
+
+.task-card-pending {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+/* ESTRUTURA PRINCIPAL DO CARD */
+
+.task-card-pending .task-card-main {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* TÍTULO E STATUS */
+
+.task-card-pending .task-card-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: 70px;
+    row-gap: 8px;
+    margin-bottom: 0;
+}
+
+.task-card-pending .task-card-heading h3 {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.task-card-pending .task-card-heading .task-status {
+    justify-self: end;
+    white-space: nowrap;
+    margin: 4px 0 0;
+}
+
+/* INFORMAÇÕES E BOTÕES */
+
+.task-card-pending .task-card-details-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.task-card-pending .task-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .task-card-pending .task-card-heading {
+        column-gap: 16px;
+        row-gap: 8px;
+    }
+
+    .task-card-pending .task-card-details-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .task-card-pending .task-buttons {
+        justify-content: flex-start;
+    }
 }

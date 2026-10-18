@@ -64,57 +64,70 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
 
         const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa.
 
-        taskCard.classList.add("task-card");
+        taskCard.classList.add("task-card", "task-card-pending");
 
             taskCard.innerHTML = `
-                <div class="task-content">
+                <div class="task-card-main">
 
-                    <h3>${task.task}</h3>
+                    <div class="task-card-heading">
 
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
+                        <h3>${task.task}</h3>
 
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>
+                        <p class="task-status pending">
+                            Pendente
+                        </p>
 
-                    <p class="task-status pending">
-                        Pendente
-                    </p>
+                    </div>
+
+                    <div class="task-card-details-row">
+
+                        <div class="task-content">
+
+                            <p>
+                                <strong>Responsável:</strong>
+                                ${task.user_name}
+                            </p>
+
+                            <p>
+                                <strong>Criada:</strong>
+                                ${task.created_at}
+                            </p>
+
+                        </div>
+
+                        <div class="task-buttons">
+
+                            <button
+                                type="button"
+                                class="edit-button"
+                                data-task-id="${task.id}"
+                                data-task-name="${task.task}"
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="progress-button"
+                                data-task-id="${task.id}"
+                            >
+                                Andamento
+                            </button>
+
+                            <button
+                                type="button"
+                                class="complete-button"
+                                data-task-id="${task.id}"
+                            >
+                                Concluir ✓
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
-
-                <div class="task-buttons">
-
-                    <button
-                        type="button"
-                        class="edit-button"
-                        data-task-id="${task.id}"
-                        data-task-name="${task.task}"
-                    >
-                        Editar
-                    </button>
-
-                    <button
-                        type="button"
-                        class="progress-button"
-                        data-task-id="${task.id}"
-                    >
-                        Andamento
-                    </button>
-
-                    <button
-                        type="button"
-                        class="complete-button"
-                        data-task-id="${task.id}"
-                    >
-                        Concluir ✓
-                    </button>
-
-                </div>
+                
             `;
 
         taskList.appendChild(taskCard); // Adiciona o card criado na lista de tarefas.
