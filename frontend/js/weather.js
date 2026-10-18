@@ -29,3 +29,5 @@ async function weatherSearch() {
     weatherRainChance.textContent = `${weatherResult.forecast.forecastday[0].day.daily_chance_of_rain}%`;
 }
 weatherSearch();
+const WEATHER_REFRESH_INTERVAL = 15 * 60 * 1000;
+setInterval(weatherSearch, WEATHER_REFRESH_INTERVAL);

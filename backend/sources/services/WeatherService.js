@@ -1,6 +1,16 @@
+let cachedWeather = null;
+let cacheTimestamp = 0;
+const CACHE_DURATION = 15 * 60 * 1000;
+
 class WeatherService {
 
     async execute () {
+
+        const now = Date.now();
+
+        if (cachedWeather && now - cacheTimestamp < CACHE_DURATION) {
+            return cachedWeather;
+        }
 
         const API_URL = "https://api.weatherapi.com/v1/forecast.json";
 
@@ -24,9 +34,10 @@ class WeatherService {
             throw new Error("Não foi possível consultar o clima.");
         }
 
-        const weather = await response.json();
+        cachedWeather  = await response.json();
+        cacheTimestamp = Date.now();
 
-        return weather;
+        return cachedWeather ;
 
     }
 

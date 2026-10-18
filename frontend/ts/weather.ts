@@ -61,3 +61,7 @@ async function weatherSearch(): Promise<void> {
 }
 
 weatherSearch();
+
+const WEATHER_REFRESH_INTERVAL = 15 * 60 * 1000;
+
+setInterval(weatherSearch, WEATHER_REFRESH_INTERVAL);
