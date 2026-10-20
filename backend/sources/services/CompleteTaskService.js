@@ -1,8 +1,28 @@
+import * as Yup from "yup";
 import connection from "../database/connection";
 
 class CompleteTaskService {
 
     async execute ({ taskId, userId }) { // Método responsável por concluir uma tarefa.
+
+        const schema = Yup.object({
+            taskId: Yup.number().integer().positive().required(),
+            userId: Yup.number().integer().positive().required()
+        });
+
+        if (!(await schema.isValid({ taskId, userId }))) {
+            throw new Error("Dados inválidos!");
+        }
+
+        const [taskExists] = await connection.execute(
+            `SELECT 
+                id 
+            FROM tasks WHERE id = ?`, [taskId]
+        );
+
+        if (taskExists.length === 0) {
+            throw new Error("Tarefa não encontrada!");
+        }
 
         await connection.execute( // Executa a consulta para atualizar a tarefa como concluída no banco de dados.
             `UPDATE tasks
