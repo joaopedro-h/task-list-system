@@ -31,6 +31,11 @@ async function searchTask(): Promise<void> { // Função responsável por realiz
 
     const researchedTask: string = (document.getElementById('researchedTask') as HTMLInputElement).value; // Pega o valor inserido pelo usuário no campo de pesquisa.
 
+    if (researchedTask === "") {
+        searchOverlay.style.display = "flex";
+        return;
+    }
+
     const token: string | null = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 
     const API_URL: string = "https://task-list-system-api.onrender.com";

@@ -20,6 +20,10 @@ searchMessageButton.addEventListener("click", () => {
 });
 async function searchTask() {
     const researchedTask = document.getElementById('researchedTask').value; // Pega o valor inserido pelo usuário no campo de pesquisa.
+    if (researchedTask === "") {
+        searchOverlay.style.display = "flex";
+        return; // Interrompe a execução caso a busca não seja realizada com sucesso.
+    }
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
     const API_URL = "https://task-list-system-api.onrender.com";
     const response = await fetch(`${API_URL}/tasks/${encodeURIComponent(researchedTask)}/search`, {
