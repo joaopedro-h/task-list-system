@@ -4,11 +4,17 @@ class ReopenTaskService {
 
     async execute ({ taskId }) {
 
+        const schema = Yup.object({
+            taskId: Yup.number().integer().positive().required()
+        });
+
+        const validateData = await schema.validate({ taskId, userId });
+
         await connection.execute(
             `UPDATE tasks
             SET 
                 status = 'pending'
-            WHERE id = ?`, [taskId]
+            WHERE id = ?`, [validateData.taskId]
         );
 
     }

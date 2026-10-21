@@ -1,8 +1,15 @@
+import * as Yup from "yup";
 import connection from "../database/connection";
 
 class SearchTaskService {
  
     async execute ({ taskName }) { // Método responsável por pesquisar uma tarefa pelo nome informado.
+
+        const schema = Yup.object({
+            taskName: Yup.string().trim().required().max(255)
+        });
+
+        const validateData = await schema.validate({ taskName });
 
         const [searchTask] = await connection.execute( // Executa a consulta para buscar as tarefas que possuem o nome pesquisado pelo usuário.
             `SELECT
@@ -35,7 +42,7 @@ class SearchTaskService {
                     WHEN tasks.status = 'in_progress' THEN 1
                     WHEN tasks.status = 'completed' THEN 2
                 END,
-                tasks.created_at DESC;`, [`%${taskName}%`] // Utiliza o LIKE com "%" para permitir buscar tarefas que tenha o texto informado pelo usuário.
+                tasks.created_at DESC;`, [`%${validateData.taskName}%`] // Utiliza o LIKE com "%" para permitir buscar tarefas que tenha o texto informado pelo usuário.
         );
 
         if (searchTask.length === 0) { // Verifica se nenhuma tarefa foi encontrada com o texto informado.

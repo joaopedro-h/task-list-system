@@ -1,8 +1,16 @@
+import * as Yup from "yup";
 import connection from "../database/connection";
 
 class InProgressTaskService {
 
     async execute ({ taskId, userId}) {
+
+        const schema = Yup.object({
+            taskId: Yup.number().integer().positive().required(),
+            userId: Yup.number().integer().positive().required()
+        });
+
+        const validateData = await schema.validate({ taskId, userId });
 
         await connection.execute( // Executa a consulta para atualizar a tarefa como em andamento no banco de dados.
             `UPDATE tasks
@@ -10,7 +18,7 @@ class InProgressTaskService {
                 status = 'in_progress',
                 started_by = ?,
                 started_at = CURRENT_TIMESTAMP
-            WHERE id = ?`, [userId, taskId]                    
+            WHERE id = ?`, [validateData.userId, validateData.taskId]                    
         );
 
         const [taskInProgress] = await connection.execute( // Executa a consulta para buscar os dados atualizados da tarefa após dar início.
@@ -24,7 +32,7 @@ class InProgressTaskService {
             FROM tasks
             JOIN users
             ON tasks.started_by = users.id
-            WHERE tasks.id = ?;`, [taskId]
+            WHERE tasks.id = ?;`, [validateData.taskId]
 
         );
 
