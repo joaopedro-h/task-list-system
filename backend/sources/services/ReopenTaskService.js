@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import connection from "../database/connection";
 
 class ReopenTaskService {
