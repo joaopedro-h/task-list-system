@@ -8,7 +8,7 @@ class ReopenTaskService {
             taskId: Yup.number().integer().positive().required()
         });
 
-        const validateData = await schema.validate({ taskId, userId });
+        const validateData = await schema.validate({ taskId });
 
         await connection.execute(
             `UPDATE tasks
