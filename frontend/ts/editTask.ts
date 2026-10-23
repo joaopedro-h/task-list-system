@@ -76,7 +76,7 @@ async function updateTask(event: SubmitEvent): Promise<void> { // Função respo
         editTaskForm.reset(); // Limpa o campo do formulário após a edição.
         await loadTasks(); // Carrega novamente as tarefas para atualizar a lista.
     
-    }else if(response.status === 400){
+    }else if(response.status === 403){
 
         interface EditTaskResponse {
             error: string;

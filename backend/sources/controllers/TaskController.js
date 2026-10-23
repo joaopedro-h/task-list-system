@@ -101,7 +101,7 @@ class TaskController {
     }
 
 
-    async update (req, res) { // Método responsável por editar uma tarefa.
+    async update (req, res, next) { // Método responsável por editar uma tarefa.
 
         const userId = req.userId;
         const taskId = req.params.id; // Pega o nome da ID enviado como parâmetro na rota da requisição.
@@ -118,10 +118,8 @@ class TaskController {
             return res.status(200).json(taskUpdated);
 
         } catch (error) {
-
-            return res.status(400).json({ // Retorna uma resposta informando que ocorreu um erro durante a edição.
-                error: error.message
-            });
+            
+            return next(error);
 
         }
 

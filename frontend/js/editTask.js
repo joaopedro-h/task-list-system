@@ -48,7 +48,7 @@ async function updateTask(event) {
         editTaskForm.reset(); // Limpa o campo do formulário após a edição.
         await loadTasks(); // Carrega novamente as tarefas para atualizar a lista.
     }
-    else if (response.status === 400) {
+    else if (response.status === 403) {
         const data = await response.json();
         taskMessageEdit.className = "task-message error";
         taskMessageEdit.textContent = data.error;

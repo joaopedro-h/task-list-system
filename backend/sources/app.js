@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from "express";
 import cors from "cors";
 import routes from "./routes/routes";
+import errorHandler from './middlewares/errorHandler';
 
 class App { // Classe para configurar o Express.
 
@@ -28,6 +29,7 @@ class App { // Classe para configurar o Express.
     // Configura as rotas.
     routes(){
         this.server.use(routes);
+        this.server.use(errorHandler)
     }
 
 }

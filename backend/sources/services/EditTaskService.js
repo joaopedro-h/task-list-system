@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class EditTaskService {
@@ -21,7 +22,11 @@ class EditTaskService {
         ); 
 
         if (taskUpdate.affectedRows === 0) { // Retorna uma mensagem informando que ocorreu um erro durante a edição da tarefa.
-            throw new Error("Apenas o criador pode editar esta tarefa.");
+            throw new AppError(
+                "Apenas o criador pode editar esta tarefa.",
+                403,
+                "TASK_EDIT_FORBIDDEN"
+            );
         }
 
         return taskUpdate;
@@ -31,3 +36,4 @@ class EditTaskService {
 }
 
 export default new EditTaskService();
+
