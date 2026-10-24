@@ -82,130 +82,184 @@ async function searchTask(): Promise<void> { // Função responsável por realiz
 
         const taskCard = document.createElement("article"); // Cria um novo card para cada tarefa encontrada.
 
-        taskCard.classList.add("task-card");
+        taskCard.classList.add("task-card", "task-card-pending", "task-card-progress", "task-card-completed");
 
         if (task.status === "completed") { // Verifica se a tarefa encontrada está concluída para montar o card correspondente.
 
             taskCard.innerHTML = `
-                <div class="task-content">
+                <div class="task-card-main">
 
-                    <h3>${task.task}</h3>
+                    <div class="task-card-heading">
 
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
+                        <h3>${task.task}</h3>
 
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>                  
+                        <p class="task-status completed">
+                            Concluída ✓
+                        </p>
 
-                    <p class="task-status completed">
-                        Concluída ✓
-                    </p>
+                    </div>
 
-                    <div class="completion-info">
+                    <div class="task-content">
 
                         <p>
-                            <strong>Concluída por:</strong>
-                            ${task.completed_by}
+                            <strong>Responsável:</strong>
+                            ${task.user_name}
                         </p>
 
                         <p>
-                            <strong>Concluída:</strong>
-                            ${task.completed_at}
+                            <strong>Criada:</strong>
+                            ${task.created_at}
                         </p>
 
                     </div>
 
                 </div>
+
+                <div class="completion-info">
+
+                    <p>
+                        <strong>Concluída por:</strong>
+                        ${task.completed_by}
+                        <span class="completion-separator">·</span>
+                        ${task.completed_at}
+                    </p>
+
+                </div>
+                
             `;
 
         } else if (task.status === "in_progress") { // Verifica se a tarefa encontrada está em andamento.
 
             taskCard.innerHTML = `
-                <div class="task-content">
+                <div class="task-card-main">
 
-                    <h3>${task.task}</h3>
+                    <div class="task-card-heading">
 
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
+                        <h3>${task.task}</h3>
 
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>
-
-                    <p class="task-status progress">
-                        Em andamento
-                    </p>
-
-                    <div class="completion-info">
-
-                        <p>
-                            <strong>Iniciado por:</strong>
-                            ${task.started_by}
+                        <p class="task-status progress">
+                            Em andamento
                         </p>
 
-                        <p>
-                            <strong>Iniciado:</strong>
-                            ${task.started_at}
-                        </p>
+                    </div>
+
+                    <div class="task-card-details">
+
+                        <div class="task-content">
+
+                            <p>
+                                <strong>Responsável:</strong>
+                                ${task.user_name}
+                            </p>
+
+                            <p>
+                                <strong>Criada:</strong>
+                                ${task.created_at}
+                            </p>
+
+                        </div>
+
+                        <div class="task-buttons">
+
+                            <button
+                                type="button"
+                                class="reopen-button"
+                                data-task-id="${task.id}"
+                            >
+                                Pendenciar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="complete-button"
+                                data-task-id="${task.id}"
+                            >
+                                Concluir ✓
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="task-buttons">
+                <div class="completion-info">
 
-                    <button
-                        type="button"
-                        class="complete-button"
-                        data-task-id="${task.id}"
-                    >
-                        Concluir ✓
-                    </button>
+                    <p>
+                        <strong>Iniciado por:</strong>
+                        ${task.started_by}
+                        <span class="completion-separator">·</span>
+                        ${task.started_at}
+                    </p>
 
                 </div>
+                
             `;
 
         } else { // Caso a tarefa encontrada ainda esteja pendente, monta o card com a opção de conclusão.
 
             taskCard.innerHTML = `
-                <div class="task-content">
+                <div class="task-card-main">
 
-                    <h3>${task.task}</h3>
+                    <div class="task-card-heading">
 
-                    <p>
-                        <strong>Responsável:</strong>
-                        ${task.user_name}
-                    </p>
+                        <h3>${task.task}</h3>
 
-                    <p>
-                        <strong>Criada:</strong>
-                        ${task.created_at}
-                    </p>
+                        <p class="task-status pending">
+                            Pendente
+                        </p>
 
-                    <p class="task-status pending">
-                        Pendente
-                    </p>
+                    </div>
+
+                    <div class="task-card-details-row">
+
+                        <div class="task-content">
+
+                            <p>
+                                <strong>Responsável:</strong>
+                                ${task.user_name}
+                            </p>
+
+                            <p>
+                                <strong>Criada:</strong>
+                                ${task.created_at}
+                            </p>
+
+                        </div>
+
+                        <div class="task-buttons">
+
+                            <button
+                                type="button"
+                                class="edit-button"
+                                data-task-id="${task.id}"
+                                data-task-name="${task.task}"
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="progress-button"
+                                data-task-id="${task.id}"
+                            >
+                                Andamento
+                            </button>
+
+                            <button
+                                type="button"
+                                class="complete-button"
+                                data-task-id="${task.id}"
+                            >
+                                Concluir ✓
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
-
-                <div class="task-buttons">
-
-                    <button
-                        type="button"
-                        class="complete-button"
-                        data-task-id="${task.id}"
-                    >
-                        Concluir ✓
-                    </button>
-
-                </div>
+                
             `;
 
         }
@@ -214,6 +268,7 @@ async function searchTask(): Promise<void> { // Função responsável por realiz
 
     });
 
+    reopenTask();
     completeTask(); // Adiciona a ação de conclusão aos botões das tarefas pendentes encontradas.
     
 }
