@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class CreateTaskService {
@@ -16,6 +17,14 @@ class CreateTaskService {
         `INSERT INTO tasks (task, created_by)
         VALUES (?,?)`, [validateData.task, validateData.userId]
         );
+
+        if (result.affectedRows === 0) {
+            throw new AppError(
+                "Erro ao criar tarefa!",
+                500,
+                "TASK_CREATE_FAILED"
+            );
+        }
 
         return { // Retorna os dados da tarefa após o cadastro ser realizado com sucesso.
             id: result.insertId, // Pega o ID gerado automaticamente para a nova tarefa.

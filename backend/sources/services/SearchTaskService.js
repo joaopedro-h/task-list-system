@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class SearchTaskService {
@@ -46,7 +47,11 @@ class SearchTaskService {
         );
 
         if (searchTask.length === 0) { // Verifica se nenhuma tarefa foi encontrada com o texto informado.
-            throw new Error("Nenhuma tarefa encontrada!"); // Interrompe a execução e retorna um erro caso nenhuma tarefa seja encontrada.
+            throw new AppError( // Interrompe a execução e retorna um erro caso nenhuma tarefa seja encontrada.
+                "Nenhuma tarefa encontrada!",
+                404,
+                "TASK_NOT_FOUND"
+            ); 
         }
         
         return searchTask; // Retorna as tarefas encontradas após a busca ser realizada com sucesso.

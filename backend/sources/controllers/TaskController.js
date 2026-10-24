@@ -9,7 +9,7 @@ import ReopenTaskService from "../services/ReopenTaskService";
 
 class TaskController {
 
-    async store (req, res) { // Método responsável por realizar o cadastro de uma nova tarefa.
+    async store (req, res, next) { // Método responsável por realizar o cadastro de uma nova tarefa.
 
         const { task } = req.body; // Pega a tarefa enviada pelo usuário na requisição pelo frontend.
         const userId = req.userId; // Pega o ID do usuário autenticado que foi adicionado na requisição pelo middleware de autenticação.
@@ -25,16 +25,14 @@ class TaskController {
 
         } catch (error) {
 
-            return res.status(400).json({ // Retorna uma resposta informando que ocorreu uma falha durante o cadastro da tarefa.
-                error: error.message
-            });
-
+            return next(error); // Retorna uma resposta informando que ocorreu uma falha durante o cadastro da tarefa.
+                
         }
 
     }
 
 
-    async index (req, res) { // Método responsável por buscar e exibir as tarefa.
+    async index (req, res, next) { // Método responsável por buscar e exibir as tarefa.
      
         try {
             
@@ -44,16 +42,14 @@ class TaskController {
 
         } catch (error) {
             
-            return res.status(404).json({ // Retorna uma resposta informando que ocorreu uma falha durante a busca das tarefas.
-                error: error.message
-            });            
+            return next(error); // Retorna uma resposta informando que ocorreu uma falha durante a busca das tarefas.           
 
         }
 
     }
 
 
-    async complete (req, res) { // Método responsável por concluir uma tarefa.
+    async complete (req, res, next) { // Método responsável por concluir uma tarefa.
 
         const taskId = req.params.id; // Pega o ID da tarefa enviado como parâmetro na rota da requisição.
         const userId = req.userId; // Pega o ID do usuário autenticado que foi adicionado na requisição pelo middleware de autenticação.
@@ -69,16 +65,14 @@ class TaskController {
 
         } catch (error) {
 
-            return res.status(400).json({  // Retorna uma resposta informando que ocorreu uma falha durante a conclusão da tarefa.
-                error: error.message
-            });
+            return next(error); // Retorna uma resposta informando que ocorreu uma falha durante a conclusão da tarefa.
 
         }
         
     }
 
 
-    async show (req, res) { // Método responsável por pesquisar uma tarefa.
+    async show (req, res, next) { // Método responsável por pesquisar uma tarefa.
 
         const taskName = req.params.name; // Pega o nome da tarefa enviado como parâmetro na rota da requisição.
 
@@ -92,9 +86,7 @@ class TaskController {
 
         } catch (error) {
             
-            return res.status(404).json({ // Retorna uma resposta informando que nenhuma tarefa foi encontrada durante a busca.
-                error: error.message
-            });
+            return next(error); // Retorna uma resposta informando que nenhuma tarefa foi encontrada durante a busca.
 
         }
 
@@ -126,7 +118,7 @@ class TaskController {
     }
 
 
-    async delete (req, res) { // Método responsável por excluir as tarefas.
+    async delete (req, res, next) { // Método responsável por excluir as tarefas.
 
         try {
             
@@ -138,16 +130,14 @@ class TaskController {
 
         } catch (error) {
             
-            return res.status(400).json({ // Retorna uma resposta informando que ocorreu um erro durante a exclusão.
-                error: error.message
-            });
+            return next(error); // Retorna uma resposta informando que ocorreu um erro durante a exclusão.
 
         }
         
     }
 
 
-    async progress (req, res) {
+    async progress (req, res, next) {
 
         const taskId = req.params.id;
         const userId = req.userId;
@@ -163,16 +153,14 @@ class TaskController {
 
         } catch (error) {
 
-            return res.status(400).json({  
-                error: error.message
-            });
+            return next(error);
 
         }
 
     }
 
 
-    async reopen (req, res) {
+    async reopen (req, res, next) {
 
         const taskId = req.params.id;
 
@@ -186,9 +174,7 @@ class TaskController {
 
         } catch (error) {
             
-            return res.status(400).json({  
-                error: error.message
-            });
+            return next(error);
 
         }
 

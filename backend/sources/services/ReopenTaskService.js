@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class ReopenTaskService {
@@ -11,12 +12,20 @@ class ReopenTaskService {
 
         const validateData = await schema.validate({ taskId });
 
-        await connection.execute(
+        const [reopenTask] = await connection.execute(
             `UPDATE tasks
             SET 
                 status = 'pending'
             WHERE id = ?`, [validateData.taskId]
         );
+
+        if (reopenTask.affectedRows === 0) {
+            throw new AppError(
+                "Erro ao reabrir a tarefa!",
+                500,
+                "INTERNAL_SERVER_ERROR"
+            );
+        }
 
     }
 

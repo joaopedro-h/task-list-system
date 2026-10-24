@@ -1,3 +1,4 @@
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class LoadTaskService {
@@ -38,7 +39,11 @@ class LoadTaskService {
         );
         
         if (resultTasks.length === 0) { // Retorna uma mensagem de erro informando que não tme nenhuma tarefa cadastrada.
-            throw new Error("Nenhuma tarefa encontrada!");
+            throw new AppError(
+                "Nenhuma tarefa encontrada!",
+                404,
+                "TASKS_NOT_FOUND"
+            );
         }
 
         return resultTasks; // Retorna as tarefas encontradas.

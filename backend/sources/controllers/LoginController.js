@@ -2,7 +2,7 @@ import LoginUserService from "../services/LoginUserService";
 
 class LoginController {
 
-    async store(req, res) { // Método responsável por realizar o login do usuário.
+    async store(req, res, next) { // Método responsável por realizar o login do usuário.
 
         const { login, password } = req.body; // Pega o login e a senha enviados pelo usuário na requisição.
 
@@ -17,9 +17,7 @@ class LoginController {
 
         } catch (error) {
 
-            return res.status(400).json({ // Retorna uma resposta informando que ocorreu uma falha durante o login.
-                error: error.message
-            });
+            return next(error);
 
         }
 

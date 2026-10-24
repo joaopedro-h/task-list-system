@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class InProgressTaskService {
@@ -12,7 +13,7 @@ class InProgressTaskService {
 
         const validateData = await schema.validate({ taskId, userId });
 
-        await connection.execute( // Executa a consulta para atualizar a tarefa como em andamento no banco de dados.
+        const [taskProgress] = await connection.execute( // Executa a consulta para atualizar a tarefa como em andamento no banco de dados.
             `UPDATE tasks
             SET 
                 status = 'in_progress',
@@ -20,6 +21,14 @@ class InProgressTaskService {
                 started_at = CURRENT_TIMESTAMP
             WHERE id = ?`, [validateData.userId, validateData.taskId]                    
         );
+
+        if (taskProgress.affectedRows === 0) {
+            throw new AppError(
+                "Erro ao iniciar a tarefa!",
+                500,
+                "INTERNAL_SERVER_ERROR"
+            );
+        }
 
         const [taskInProgress] = await connection.execute( // Executa a consulta para buscar os dados atualizados da tarefa após dar início.
             `SELECT

@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import AppError from "../errors/AppError";
 import connection from "../database/connection";
 
 class CompleteTaskService {
@@ -10,28 +11,38 @@ class CompleteTaskService {
             userId: Yup.number().integer().positive().required()
         });
 
-        if (!(await schema.isValid({ taskId, userId }))) {
-            throw new Error("Dados inválidos!");
-        }
+        const validateData = await schema.validate({ taskId, userId });
 
         const [taskExists] = await connection.execute(
             `SELECT 
                 id 
-            FROM tasks WHERE id = ?`, [taskId]
+            FROM tasks WHERE id = ?`, [validateData.taskId]
         );
 
         if (taskExists.length === 0) {
-            throw new Error("Tarefa não encontrada!");
+            throw new AppError(
+                "Tarefa não encontrada!",
+                404,
+                "TASK_NOT_FOUND"
+            );
         }
 
-        await connection.execute( // Executa a consulta para atualizar a tarefa como concluída no banco de dados.
+        const [taskUpdate] = await connection.execute( // Executa a consulta para atualizar a tarefa como concluída no banco de dados.
             `UPDATE tasks
             SET 
                 status = 'completed',
                 completed_by = ?,
                 completed_at = CURRENT_TIMESTAMP
-            WHERE id = ?`, [userId, taskId]                    
+            WHERE id = ?`, [validateData.userId, validateData.taskId]                    
         );
+
+        if (taskUpdate.affectedRows === 0) {
+            throw new AppError(
+                "Erro ao completar a tarefa!",
+                500,
+                "INTERNAL_SERVER_ERROR"
+            );
+        }
 
         const [taskCompleted] = await connection.execute( // Executa a consulta para buscar os dados atualizados da tarefa após a conclusão.
             `SELECT
@@ -43,7 +54,7 @@ class CompleteTaskService {
             FROM tasks
             JOIN users
             ON tasks.completed_by = users.id
-            WHERE tasks.id = ?;`, [taskId]
+            WHERE tasks.id = ?;`, [validateData.taskId]
 
         );
 
