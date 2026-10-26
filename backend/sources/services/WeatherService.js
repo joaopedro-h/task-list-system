@@ -1,3 +1,5 @@
+import AppError from "../errors/AppError";
+
 let cachedWeather = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 15 * 60 * 1000;
@@ -17,7 +19,11 @@ class WeatherService {
         const apiKey = process.env.WEATHER_API_KEY;
 
         if (!apiKey) {
-            throw new Error("API inválida!");
+            throw new AppError(
+                "Serviço de clima não configurado.",
+                500,
+                "WEATHER_API_KEY_MISSING"
+            );
         }
 
         const params = new URLSearchParams({
@@ -28,10 +34,28 @@ class WeatherService {
             alerts: "no"
         });
 
-        const response = await fetch(`${API_URL}?${params}`);
+        let response;
+
+        try {
+
+            response = await fetch(`${API_URL}?${params}`);
+
+        } catch (error) {
+
+            throw new AppError(
+                "Não foi possível conectar ao serviço de clima.",
+                502,
+                "WEATHER_API_UNAVAILABLE"
+            );
+            
+        }
 
         if (!response.ok) {
-            throw new Error("Não foi possível consultar o clima.");
+            throw new AppError(
+                "Não foi possível consultar o clima.",
+                502,
+                "WEATHER_API_REQUEST_FAILED"
+            );
         }
 
         cachedWeather  = await response.json();

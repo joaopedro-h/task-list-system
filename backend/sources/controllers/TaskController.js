@@ -137,7 +137,7 @@ class TaskController {
     }
 
 
-    async progress (req, res, next) {
+    async progress (req, res, next) { // Método responsável por iniciar as tarefas.
 
         const taskId = req.params.id;
         const userId = req.userId;
@@ -160,7 +160,7 @@ class TaskController {
     }
 
 
-    async reopen (req, res, next) {
+    async reopen (req, res, next) { // Método responsável por reabrir as tarefas.
 
         const taskId = req.params.id;
 
