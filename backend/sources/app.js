@@ -13,6 +13,7 @@ class App { // Classe para configurar o Express.
         // Chama as funções para configurar os middlewares e as rotas.
         this.middlewares();
         this.routes();
+        this.errorHandlers();
     }
 
     // Configura os middlewares.
@@ -28,8 +29,12 @@ class App { // Classe para configurar o Express.
 
     // Configura as rotas.
     routes(){
-        this.server.use(routes);
-        this.server.use(errorHandler)
+        this.server.use(routes); // Define que o servidor irá utilizar as rotas do arquivo "routes.js".
+    }
+
+    // Configura o middleware responsável por tratar os erros ocorridos durante as rotas.
+    errorHandlers(){
+        this.server.use(errorHandler) // Registra o middleware responsável por centralizar o tratamento dos erros encaminhados pelo Express.
     }
 
 }
