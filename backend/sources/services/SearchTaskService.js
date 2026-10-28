@@ -6,11 +6,11 @@ class SearchTaskService {
  
     async execute ({ taskName }) { // Método responsável por pesquisar uma tarefa pelo nome informado.
 
-        const schema = Yup.object({
+        const schema = Yup.object({ // Utiliza o Yup para validar os dados enviados pelo front-end.
             taskName: Yup.string().trim().required().max(255)
         });
 
-        const validateData = await schema.validate({ taskName });
+        const validateData = await schema.validate({ taskName }); // Caso a validação falhe é retornado um erro, no qual será tratado no middleware responsável.
 
         const [searchTask] = await connection.execute( // Executa a consulta para buscar as tarefas que possuem o nome pesquisado pelo usuário.
             `SELECT

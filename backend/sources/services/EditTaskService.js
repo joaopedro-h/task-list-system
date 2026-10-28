@@ -6,13 +6,13 @@ class EditTaskService {
 
     async execute ({ userId, taskId, taskName }) { // Método responsável editar a tarefa no banco de dados.
 
-        const schema = Yup.object({
+        const schema = Yup.object({ // Utiliza o Yup para validar os dados enviados pelo front-end.
             userId: Yup.number().integer().positive().required(),
             taskId: Yup.number().integer().positive().required(),
             taskName: Yup.string().trim().required().max(255)
         });
 
-        const validateData = await schema.validate({ userId, taskId, taskName });
+        const validateData = await schema.validate({ userId, taskId, taskName }); // Caso a validação falhe é retornado um erro, no qual será tratado no middleware responsável.
 
         const [taskUpdate] = await connection.execute( // Executa a edição da tarefa no banco de dados, usando o ID para identificar a tarefa.
             `UPDATE tasks

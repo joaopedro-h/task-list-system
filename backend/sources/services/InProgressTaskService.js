@@ -6,12 +6,12 @@ class InProgressTaskService {
 
     async execute ({ taskId, userId}) {
 
-        const schema = Yup.object({
+        const schema = Yup.object({ // Utiliza o Yup para validar os dados enviados pelo front-end.
             taskId: Yup.number().integer().positive().required(),
             userId: Yup.number().integer().positive().required()
         });
 
-        const validateData = await schema.validate({ taskId, userId });
+        const validateData = await schema.validate({ taskId, userId }); // Caso a validação falhe é retornado um erro, no qual será tratado no middleware responsável.
 
         const [taskProgress] = await connection.execute( // Executa a consulta para atualizar a tarefa como em andamento no banco de dados.
             `UPDATE tasks

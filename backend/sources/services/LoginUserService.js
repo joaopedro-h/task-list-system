@@ -14,7 +14,7 @@ class LoginUserService {
             password: Yup.string().required().min(6), // Verifica se a senha é uma string, foi informada e possui no mínimo 6 caracteres.
         })
 
-        const validateData = await schema.validate({ login, password});
+        const validateData = await schema.validate({ login, password}); // Caso a validação falhe é retornado um erro, no qual será tratado no middleware responsável.
 
         const [resultUser] = await connection.execute( // Executa a consulta para buscar o usuário pelo email.
             `SELECT * FROM users
