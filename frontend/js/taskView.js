@@ -1,5 +1,6 @@
 "use strict";
 let currentView = "pending"; // Variável que armazena qual tipo de tarefa está sendo exibido atualmente.
+let currentSearch = "";
 async function refreshCurrentView() {
     if (currentView === "pending") {
         await loadTasks();
@@ -9,6 +10,9 @@ async function refreshCurrentView() {
     }
     else if (currentView === "completed") {
         await loadCompletedTasks();
+    }
+    else if (currentView === "searching") {
+        await searchTask(currentSearch);
     }
 }
 refreshCurrentView();

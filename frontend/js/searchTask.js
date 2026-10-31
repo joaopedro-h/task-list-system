@@ -2,10 +2,12 @@
 const searchButton = document.getElementById('searchButton'); // Pega as informações necessárias do front-end para realizar a busca das tarefas.
 const clearSearchButton = document.getElementById('clearSearchButton');
 const searchInput = document.getElementById("researchedTask");
-searchButton.addEventListener("click", searchTask); // Executa a função de busca quando o usuário clicar no botão.
+searchButton.addEventListener("click", () => {
+    searchTask(searchInput.value);
+});
 searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        searchTask();
+        searchTask(searchInput.value);
     }
 });
 clearSearchButton.addEventListener("click", async () => {
@@ -18,12 +20,14 @@ searchMessageButton.addEventListener("click", () => {
     searchInput.value = "";
     searchOverlay.style.display = "none";
 });
-async function searchTask() {
-    const researchedTask = document.getElementById('researchedTask').value; // Pega o valor inserido pelo usuário no campo de pesquisa.
+async function searchTask(researchedTask) {
+    //const researchedTask: string = (document.getElementById('researchedTask') as HTMLInputElement).value; // Pega o valor inserido pelo usuário no campo de pesquisa.
     if (researchedTask === "") {
         searchOverlay.style.display = "flex";
         return;
     }
+    currentView = "searching";
+    currentSearch = researchedTask;
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
     const API_URL = "https://task-list-system-api.onrender.com";
     const response = await fetch(`${API_URL}/tasks/${encodeURIComponent(researchedTask)}/search`, {

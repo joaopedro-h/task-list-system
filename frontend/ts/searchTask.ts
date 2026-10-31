@@ -2,12 +2,16 @@ const searchButton = document.getElementById('searchButton') as HTMLButtonElemen
 const clearSearchButton = document.getElementById('clearSearchButton') as HTMLButtonElement;
 const searchInput = document.getElementById("researchedTask") as HTMLInputElement;
 
-searchButton.addEventListener("click", searchTask) // Executa a função de busca quando o usuário clicar no botão.
+searchButton.addEventListener("click", () => { // Executa a função de busca quando o usuário clicar no botão.
+
+    searchTask(searchInput.value);
+
+}) 
 
 searchInput.addEventListener("keydown", function(event: KeyboardEvent): void { // Permite realizar a busca também ao pressionar a tecla Enter.
     
     if (event.key === "Enter") {
-        searchTask();
+        searchTask(searchInput.value);
     }
     
 });
@@ -27,14 +31,17 @@ searchMessageButton.addEventListener("click", () => {
     searchOverlay.style.display = "none";
 });
 
-async function searchTask(): Promise<void> { // Função responsável por realizar a busca de tarefas.
+async function searchTask(researchedTask: string): Promise<void> { // Função responsável por realizar a busca de tarefas.
 
-    const researchedTask: string = (document.getElementById('researchedTask') as HTMLInputElement).value; // Pega o valor inserido pelo usuário no campo de pesquisa.
+    //const researchedTask: string = (document.getElementById('researchedTask') as HTMLInputElement).value; // Pega o valor inserido pelo usuário no campo de pesquisa.
 
     if (researchedTask === "") {
         searchOverlay.style.display = "flex";
         return;
     }
+
+    currentView = "searching";
+    currentSearch = researchedTask;
 
     const token: string | null = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
 

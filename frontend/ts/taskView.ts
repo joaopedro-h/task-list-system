@@ -1,4 +1,5 @@
-let currentView: "pending" | "in_progress" | "completed" = "pending"; // Variável que armazena qual tipo de tarefa está sendo exibido atualmente.
+let currentView: "pending" | "in_progress" | "completed" | "searching" = "pending"; // Variável que armazena qual tipo de tarefa está sendo exibido atualmente.
+let currentSearch: string = "";
 
 async function refreshCurrentView(): Promise<void> {
 
@@ -13,6 +14,10 @@ async function refreshCurrentView(): Promise<void> {
     } else if (currentView === "completed") {
 
         await loadCompletedTasks();
+
+    } else if (currentView === "searching") {
+
+        await searchTask(currentSearch);
 
     }
 
