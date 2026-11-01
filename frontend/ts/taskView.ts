@@ -1,4 +1,7 @@
-let currentView: "pending" | "in_progress" | "completed" | "searching" = "pending"; // Variável que armazena qual tipo de tarefa está sendo exibido atualmente.
+type TaskView = "pending" | "in_progress" | "completed" | "searching";
+
+let currentView: TaskView = "pending";
+let previousView: Exclude<TaskView, "searching"> = "pending";
 let currentSearch: string = "";
 
 async function refreshCurrentView(): Promise<void> {

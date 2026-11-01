@@ -3,10 +3,12 @@ const searchButton = document.getElementById('searchButton'); // Pega as informa
 const clearSearchButton = document.getElementById('clearSearchButton');
 const searchInput = document.getElementById("researchedTask");
 searchButton.addEventListener("click", () => {
+    previusView = currentView;
     searchTask(searchInput.value);
 });
 searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
+        previusView = currentView;
         searchTask(searchInput.value);
     }
 });

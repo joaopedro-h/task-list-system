@@ -19,6 +19,8 @@ searchInput.addEventListener("keydown", function(event: KeyboardEvent): void { /
 clearSearchButton.addEventListener("click", async () => { // Limpa o campo de pesquisa e volta a exibir todas as tarefas.
 
     searchInput.value = "";
+    currentView = previousView;
+    currentSearch = "";
     await refreshCurrentView();
 
 });
@@ -38,6 +40,10 @@ async function searchTask(researchedTask: string): Promise<void> { // Função r
     if (researchedTask === "") {
         searchOverlay.style.display = "flex";
         return;
+    }
+
+    if (currentView !== "searching") {
+        previousView = currentView;
     }
 
     currentView = "searching";
