@@ -3,17 +3,17 @@ const searchButton = document.getElementById('searchButton'); // Pega as informa
 const clearSearchButton = document.getElementById('clearSearchButton');
 const searchInput = document.getElementById("researchedTask");
 searchButton.addEventListener("click", () => {
-    previusView = currentView;
     searchTask(searchInput.value);
 });
 searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        previusView = currentView;
         searchTask(searchInput.value);
     }
 });
 clearSearchButton.addEventListener("click", async () => {
     searchInput.value = "";
+    currentView = previousView;
+    currentSearch = "";
     await refreshCurrentView();
 });
 const searchOverlay = document.getElementById('searchOverlay');
@@ -27,6 +27,9 @@ async function searchTask(researchedTask) {
     if (researchedTask === "") {
         searchOverlay.style.display = "flex";
         return;
+    }
+    if (currentView !== "searching") {
+        previousView = currentView;
     }
     currentView = "searching";
     currentSearch = researchedTask;
