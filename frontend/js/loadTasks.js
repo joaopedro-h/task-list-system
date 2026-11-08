@@ -2,29 +2,29 @@
 const taskList = document.getElementById('taskList'); // Pega o elemento do front-end onde as tarefas serão exibidas.
 const pendingTasksButton = document.getElementById('pendingTasksButton');
 pendingTasksButton.addEventListener("click", async () => {
-    currentView = "pending";
-    await refreshCurrentView();
+    currentView = "pending"; // Atualiza a visualização atual para tarefas pendentes.
+    await refreshCurrentView(); // Atualiza a lista de tarefas de acordo com a visualização selecionada.
 });
 async function loadTasks() {
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
     const API_URL = "https://task-list-system-api.onrender.com";
     const response = await fetch(`${API_URL}/tasks`, {
-        method: "GET",
+        method: "GET", // Define o método GET para buscar as tarefas.
         headers: {
             "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
         }
     });
     const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
-    if (response.status === 404) {
-        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
+    if (response.status === 404) { // Verifica se nenhuma tarefa foi encontrada.
+        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>"; // Exibe uma mensagem informando que não existem tarefas cadastradas.
         return;
     }
     else if (response.status === 401) {
         sessionExpired(); // Exibe o aviso informando que a sessão do usuário expirou.
         return;
     }
-    const pendingTasks = tasks.filter(task => task.status === "pending");
-    if (pendingTasks.length === 0) {
+    const pendingTasks = tasks.filter(task => task.status === "pending"); // Filtra apenas as tarefas que estão pendentes.
+    if (pendingTasks.length === 0) { // Verifica se existem tarefas pendentes.
         taskList.innerHTML = "<p>Nenhuma tarefa pendente.</p>";
         return;
     }

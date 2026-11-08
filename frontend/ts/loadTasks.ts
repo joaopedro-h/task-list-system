@@ -4,8 +4,8 @@ const pendingTasksButton = document.getElementById('pendingTasksButton') as HTML
 
 pendingTasksButton.addEventListener("click", async () => {
 
-    currentView = "pending";
-    await refreshCurrentView();
+    currentView = "pending"; // Atualiza a visualização atual para tarefas pendentes.
+    await refreshCurrentView(); // Atualiza a lista de tarefas de acordo com a visualização selecionada.
     
 });
     
@@ -17,7 +17,7 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
 
     const response: Response = await fetch(`${API_URL}/tasks`, { // Envia uma requisição ao backend para buscar todas as tarefas.
         
-        method: "GET",
+        method: "GET", // Define o método GET para buscar as tarefas.
 
         headers: {
             "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
@@ -25,7 +25,7 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
 
     });
 
-    interface Task {
+    interface Task { // Define a estrutura dos dados de cada tarefa retornada pelo backend.
         id: number;
         task: string;
         status: string;
@@ -39,9 +39,9 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
 
     const tasks: Task[] = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
     
-    if (response.status === 404) {
+    if (response.status === 404) { // Verifica se nenhuma tarefa foi encontrada.
         
-        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
+        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>"; // Exibe uma mensagem informando que não existem tarefas cadastradas.
         return;
 
     } else if (response.status === 401){
@@ -51,9 +51,9 @@ async function loadTasks(): Promise<void> { // Função responsável por buscar 
 
     }
 
-    const pendingTasks = tasks.filter(task => task.status === "pending");
+    const pendingTasks = tasks.filter(task => task.status === "pending"); // Filtra apenas as tarefas que estão pendentes.
 
-    if (pendingTasks.length === 0) {
+    if (pendingTasks.length === 0) { // Verifica se existem tarefas pendentes.
         taskList.innerHTML = "<p>Nenhuma tarefa pendente.</p>";
         return;
     }

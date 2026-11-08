@@ -2,8 +2,8 @@ const completedTasksButton = document.getElementById('completedTasksButton') as 
 
 completedTasksButton.addEventListener("click", async () => {
 
-    currentView = "completed";
-    await refreshCurrentView();
+    currentView = "completed"; // Atualiza a visualização atual para tarefas concluídas.
+    await refreshCurrentView(); // Atualiza a lista de tarefas de acordo com a visualização selecionada.
 
 });
 
@@ -15,7 +15,7 @@ async function loadCompletedTasks(): Promise<void> {
 
     const response: Response = await fetch(`${API_URL}/tasks`, { // Envia uma requisição ao backend para buscar todas as tarefas.
         
-        method: "GET",
+        method: "GET", // Define o método GET para buscar as tarefas.
 
         headers: {
             "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
@@ -23,7 +23,7 @@ async function loadCompletedTasks(): Promise<void> {
 
     });
 
-    interface Task {
+    interface Task { // Define a estrutura dos dados de cada tarefa retornada pelo backend.
         id: number;
         task: string;
         status: string;
@@ -37,9 +37,9 @@ async function loadCompletedTasks(): Promise<void> {
 
     const tasks: Task[] = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
 
-    if (response.status === 404) {
+    if (response.status === 404) { // Verifica se nenhuma tarefa foi encontrada.
 
-        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
+        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>"; // Exibe uma mensagem informando que não existem tarefas cadastradas.
         return;
 
     } else if (response.status === 401){
@@ -49,9 +49,9 @@ async function loadCompletedTasks(): Promise<void> {
 
     }
 
-    const completedTasks = tasks.filter(task => task.status === "completed");
+    const completedTasks = tasks.filter(task => task.status === "completed"); // Filtra apenas as tarefas que estão concluídas.
 
-    if (completedTasks.length === 0) {
+    if (completedTasks.length === 0) { // Verifica se existem tarefas concluídas.
         taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
         return;
     }

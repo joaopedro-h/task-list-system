@@ -1,29 +1,29 @@
 "use strict";
 const completedTasksButton = document.getElementById('completedTasksButton');
 completedTasksButton.addEventListener("click", async () => {
-    currentView = "completed";
-    await refreshCurrentView();
+    currentView = "completed"; // Atualiza a visualização atual para tarefas concluídas.
+    await refreshCurrentView(); // Atualiza a lista de tarefas de acordo com a visualização selecionada.
 });
 async function loadCompletedTasks() {
     const token = localStorage.getItem("token"); // Pega o token do usuário armazenado no navegador.
     const API_URL = "https://task-list-system-api.onrender.com";
     const response = await fetch(`${API_URL}/tasks`, {
-        method: "GET",
+        method: "GET", // Define o método GET para buscar as tarefas.
         headers: {
             "Authorization": `Bearer ${token}` // Envia o token para validar o usuário autenticado.
         }
     });
     const tasks = await response.json(); // Converte a resposta JSON recebida do backend para um array JavaScript.
-    if (response.status === 404) {
-        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>";
+    if (response.status === 404) { // Verifica se nenhuma tarefa foi encontrada.
+        taskList.innerHTML = "<p>Nenhuma tarefa cadastrada.</p>"; // Exibe uma mensagem informando que não existem tarefas cadastradas.
         return;
     }
     else if (response.status === 401) {
         sessionExpired(); // Exibe o aviso informando que a sessão do usuário expirou.
         return;
     }
-    const completedTasks = tasks.filter(task => task.status === "completed");
-    if (completedTasks.length === 0) {
+    const completedTasks = tasks.filter(task => task.status === "completed"); // Filtra apenas as tarefas que estão concluídas.
+    if (completedTasks.length === 0) { // Verifica se existem tarefas concluídas.
         taskList.innerHTML = "<p>Nenhuma tarefa concluída.</p>";
         return;
     }
