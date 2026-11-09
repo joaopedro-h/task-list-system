@@ -30,6 +30,9 @@ body {
 
 .header-title h1 {
     font-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .user-info {
